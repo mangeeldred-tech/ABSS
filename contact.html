@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Contact · Arakan Boys Secondary School</title>
+    <!-- Playfair Display — primary font throughout -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Inter only as geometric fallback/accents -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ---------- GLOBAL — PLAYFAIR DOMINANCE, MILITARY PRECISION ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :root {
+            --barracks-blue: #1a3e50;
+            --parade-grey: #4f5a62;
+            --stripe-gold: #b78c4a;
+            --rifle-green: #1e2f3a;
+            --bone-white: #b0b0b0;
+            --pure-white: #f8fbfc;
+            --border-light: rgba(26, 62, 80, 0.15);
+        }
+
+        html {
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Playfair Display', serif;
+            background-color: var(--pure-white);
+            color: #1e2b36;
+            line-height: 1.5;
+            font-weight: 400;
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ---------- HEADER — STICKY, DUAL EMBLEM, FULLY RESPONSIVE ---------- */
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(255,255,255,0.96);
+            backdrop-filter: blur(8px);
+            border-bottom: 3px solid var(--barracks-blue);
+            z-index: 100;
+            width: 100%;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            width: 100%;
+            flex-wrap: wrap;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex: 1 1 auto;
+            min-width: 0; /* enables text truncation on small screens */
+        }
+
+        .logo-dual {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .logo-shield-left,
+        .logo-shield-right {
+            width: 64px;
+            height: 64px;
+            border: 2px solid var(--barracks-blue);
+            background: #e8f0f3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .logo-shield-right {
+            border: 2px solid var(--stripe-gold);
+        }
+
+        .logo-shield-left img,
+        .logo-shield-right img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .school-name {
+            flex-grow: 1;
+            min-width: 0;
+        }
+
+        .school-name h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: var(--rifle-green);
+            line-height: 1.1;
+            letter-spacing: -0.5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .school-name span {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--parade-grey);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-top: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--rifle-green);
+            padding-bottom: 6px;
+            border-bottom: 2px solid transparent;
+            transition: 0.2s;
+            font-size: 1.05rem;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            border-bottom-color: var(--stripe-gold);
+            color: var(--barracks-blue);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            color: var(--rifle-green);
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        /* ---------- CONTACT PAGE — FULLY OPTIMIZED, FLUID, MOBILE-FIRST ---------- */
+        .contact-header {
+            padding: 40px 0 20px;
+            border-bottom: 2px solid var(--stripe-gold);
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .contact-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 8vw, 3rem);
+            font-weight: 900;
+            color: var(--rifle-green);
+            letter-spacing: -1px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .contact-header h2 i {
+            color: var(--barracks-blue);
+            font-size: clamp(2rem, 7vw, 2.8rem);
+        }
+
+        .school-badge {
+            background: var(--rifle-green);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            letter-spacing: 2px;
+            border: 2px solid var(--stripe-gold);
+            white-space: nowrap;
+        }
+
+        /* ----- SCHOOL MAIN CONTACT CARD — RESPONSIVE GRID ----- */
+        .school-contact-card {
+            background: white;
+            border: 1px solid var(--border-light);
+            border-radius: 32px;
+            padding: clamp(28px, 5vw, 48px);
+            margin-bottom: 48px;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.04);
+            border-left: 12px solid var(--stripe-gold);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: clamp(24px, 4vw, 48px);
+            width: 100%;
+        }
+
+        .contact-detail-primary h3 {
+            font-size: clamp(1.6rem, 5vw, 2rem);
+            font-weight: 800;
+            color: var(--rifle-green);
+            margin-bottom: 28px;
+            border-bottom: 2px dashed var(--barracks-blue);
+            padding-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            word-break: break-word;
+        }
+
+        .contact-detail-primary h3 i {
+            color: var(--barracks-blue);
+            font-size: clamp(1.8rem, 5vw, 2.2rem);
+            flex-shrink: 0;
+        }
+
+        .school-meta-list {
+            list-style: none;
+        }
+
+        .school-meta-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 28px;
+            font-size: clamp(1.1rem, 4vw, 1.3rem);
+            font-weight: 600;
+            color: #1e3a47;
+            border-bottom: 1px dotted var(--border-light);
+            padding-bottom: 16px;
+            flex-wrap: wrap;
+            word-break: break-word;
+        }
+
+        .school-meta-list li i {
+            width: 32px;
+            color: var(--stripe-gold);
+            font-size: clamp(1.3rem, 4vw, 1.6rem);
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .placeholder-xxx {
+            font-family: 'Playfair Display', serif;
+            background: #ecf0f3;
+            padding: 6px 20px;
+            border-radius: 60px;
+            color: var(--barracks-blue);
+            font-weight: 700;
+            letter-spacing: 2px;
+            display: inline-block;
+            border: 1px dashed var(--parade-grey);
+            font-size: clamp(0.95rem, 3.5vw, 1.2rem);
+            line-height: 1.4;
+            word-break: break-word;
+        }
+
+        .physical-address {
+            background: #eef4f8;
+            padding: clamp(24px, 4vw, 28px);
+            border-radius: 28px;
+            border-left: 8px solid var(--barracks-blue);
+            height: fit-content;
+        }
+
+        .physical-address h4 {
+            font-size: clamp(1.5rem, 5vw, 1.7rem);
+            font-weight: 800;
+            color: var(--rifle-green);
+            margin-bottom: 24px;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .address-line {
+            font-size: clamp(1.1rem, 3.8vw, 1.25rem);
+            margin-bottom: 20px;
+            display: flex;
+            gap: 14px;
+            align-items: baseline;
+            flex-wrap: wrap;
+            word-break: break-word;
+        }
+
+        .address-line i {
+            flex-shrink: 0;
+            width: 28px;
+        }
+
+        /* ----- GOOGLE LANDMARK — FULLY RESPONSIVE, STACKS ON MOBILE ----- */
+        .google-landmark {
+            background: #0f1f28;
+            border-radius: 32px;
+            padding: clamp(28px, 5vw, 40px);
+            margin-bottom: 60px;
+            color: white;
+            border-bottom: 6px solid var(--stripe-gold);
+            width: 100%;
+        }
+
+        .google-landmark h4 {
+            font-size: clamp(1.5rem, 6vw, 1.9rem);
+            font-weight: 800;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            color: white;
+            flex-wrap: wrap;
+        }
+
+        .google-landmark h4 i {
+            color: var(--stripe-gold);
+            font-size: clamp(1.8rem, 6vw, 2.2rem);
+        }
+
+        .map-container {
+            background: #2a404c;
+            border-radius: 24px;
+            padding: clamp(20px, 4vw, 28px);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 28px;
+            align-items: center;
+        }
+
+        .map-details {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            font-size: clamp(1rem, 3.8vw, 1.2rem);
+        }
+
+        .map-details i {
+            color: var(--stripe-gold);
+            width: 36px;
+            flex-shrink: 0;
+        }
+
+        .map-placeholder-box {
+            background: white;
+            padding: 20px 24px;
+            border-radius: 28px;
+            color: var(--rifle-green);
+            font-weight: 700;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            border: 3px solid var(--stripe-gold);
+            text-align: center;
+        }
+
+        .map-placeholder-box i {
+            font-size: 2.5rem;
+            color: #c4411e;
+        }
+
+        .map-link {
+            background: var(--stripe-gold);
+            color: #0e1f28;
+            padding: 12px 24px;
+            border-radius: 60px;
+            font-weight: 800;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 16px;
+            border: 2px solid white;
+            text-align: center;
+            font-size: clamp(0.95rem, 3.5vw, 1.1rem);
+            align-self: flex-start;
+        }
+
+        /* ----- ASSURANCE NOTE, PARTNERS, FOOTER — FULLY RESPONSIVE ----- */
+        .assurance-note {
+            background: #ebeff2;
+            border-radius: 60px;
+            padding: 20px 32px;
+            margin-bottom: 48px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            border: 1px solid var(--barracks-blue);
+        }
+
+        .assurance-note i {
+            font-size: 2.2rem;
+            color: var(--stripe-gold);
+            flex-shrink: 0;
+        }
+
+        .assurance-note p {
+            font-size: clamp(1rem, 3.8vw, 1.2rem);
+            font-weight: 600;
+            color: var(--rifle-green);
+            flex: 1;
+        }
+
+        .partners {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+            background: white;
+            padding: 28px 32px;
+            border-radius: 60px;
+            border: 1px solid var(--barracks-blue);
+            margin-bottom: 60px;
+            width: 100%;
+        }
+
+        .partner-item {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            color: var(--rifle-green);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: clamp(1rem, 3.5vw, 1.1rem);
+            white-space: nowrap;
+        }
+
+        /* ---------- FOOTER — FULLY RESPONSIVE, STACKS ON MOBILE ---------- */
+        footer {
+            background: #0f1f28;
+            color: #e0ecf2;
+            padding: 64px 0 32px;
+            border-top: 6px solid var(--barracks-blue);
+            width: 100%;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-bottom: 48px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .footer-school h3 {
+            font-family: 'Playfair Display', serif;
+            color: white;
+            font-size: clamp(1.5rem, 5vw, 1.8rem);
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .footer-school p {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            opacity: 0.9;
+            line-height: 1.6;
+            word-break: break-word;
+        }
+
+        .zambia-badge {
+            display: inline-block;
+            background: #198a5e;
+            color: white;
+            padding: 4px 16px;
+            border-radius: 40px;
+            font-family: 'Playfair Display', serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-left: 10px;
+            text-transform: uppercase;
+        }
+
+        .footer-contact {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .footer-contact h5 {
+            font-family: 'Playfair Display', serif;
+            color: white;
+            font-size: clamp(1.2rem, 4.5vw, 1.3rem);
+            font-weight: 700;
+            margin-bottom: 24px;
+            border-bottom: 2px solid var(--stripe-gold);
+            display: inline-block;
+            padding-bottom: 8px;
+        }
+
+        .footer-contact ul {
+            list-style: none;
+        }
+
+        .footer-contact li {
+            margin-bottom: 18px;
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1rem, 3.8vw, 1.05rem);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            word-break: break-word;
+        }
+
+        .footer-contact i {
+            width: 24px;
+            color: var(--stripe-gold);
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .footer-contact a {
+            color: #cbdbe3;
+            text-decoration: none;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 32px;
+            border-top: 1px solid #2a4450;
+            font-family: 'Playfair Display', serif;
+            color: #a1b7c2;
+            font-size: 0.95rem;
+        }
+
+        /* ---------- RESPONSIVE NAVIGATION (MOBILE MENU) ---------- */
+        @media (max-width: 992px) {
+            .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                gap: 20px;
+                padding: 30px 0 20px;
+            }
+            
+            .nav-links.mobile-open {
+                display: flex;
+            }
+            
+            .nav-links a {
+                white-space: normal;
+                font-size: 1.2rem;
+                padding: 8px 0;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .school-name h1 {
+                font-size: 1.4rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+            
+            .logo-shield-left,
+            .logo-shield-right {
+                width: 52px;
+                height: 52px;
+            }
+            
+            .school-name h1 {
+                font-size: 1.2rem;
+            }
+            
+            .school-name span {
+                font-size: 0.65rem;
+                letter-spacing: 2px;
+            }
+            
+            .partners {
+                flex-direction: column;
+                align-items: center;
+                white-space: normal;
+            }
+            
+            .partner-item {
+                white-space: normal;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .logo-dual {
+                gap: 6px;
+            }
+            
+            .logo-shield-left,
+            .logo-shield-right {
+                width: 44px;
+                height: 44px;
+            }
+            
+            .school-name h1 {
+                font-size: 1rem;
+            }
+            
+            .school-name span {
+                font-size: 0.55rem;
+                letter-spacing: 1.5px;
+            }
+            
+            .contact-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .school-badge {
+                white-space: normal;
+                word-break: break-word;
+            }
+            
+            .school-meta-list li {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .map-link {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        /* small screen extreme */
+        @media (max-width: 380px) {
+            .logo-area {
+                gap: 8px;
+            }
+            
+            .logo-shield-left,
+            .logo-shield-right {
+                width: 38px;
+                height: 38px;
+            }
+            
+            .school-name h1 {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container navbar">
+            <div class="logo-area">
+                <div class="logo-dual">
+                    <div class="logo-shield-left">
+                        <img src="emblem-left.png" alt="Arakan left emblem" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-shield\' style=\'font-size:2rem;color:#1a3e50;\'></i>'">
+                    </div>
+                    <div class="logo-shield-right">
+                        <img src="emblem-right.png" alt="Arakan right emblem" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-shield-haltered\' style=\'font-size:2rem;color:#b78c4a;\'></i>'">
+                    </div>
+                </div>
+                <div class="school-name">
+                    <h1>ARAKAN BOYS</h1>
+                    <span>SECONDARY SCHOOL · LUSAKA</span>
+                </div>
+            </div>
+            <div class="nav-links" id="navLinks">
+       
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="portal.html">Portal</a>
+                <a href="news.html">News</a>
+                <a href="contact.html" class="active">Contact</a>
+                <a href="gallary.html">Gallary</a>
+            </div>
+            <div class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- CONTACT HEADER — School main line only -->
+        <div class="container contact-header">
+            <h2>
+                <i class="fas fa-school"></i> 
+                SCHOOL CONTACT
+            </h2>
+            <span class="school-badge"><i class="fas fa-phone"></i> MAIN LINE · +260760976399</span>
+        </div>
+
+        <!-- ASSURANCE: NO PERSONAL / STAFF CONTACTS LISTED -->
+        <div class="container assurance-note">
+            <i class="fas fa-shield-haltered"></i>
+            <p>Only Arakan Boys Secondary School official main contacts appear below. No personal staff, headmaster, or departmental numbers are published — in accordance with Ministry policy.</p>
+        </div>
+
+        <!-- SCHOOL MAIN CONTACT CARD — UPDATED WITH REAL CONTACTS -->
+        <div class="container school-contact-card">
+            <div class="contact-detail-primary">
+                <h3><i class="fas fa-building"></i> Arakan Boys – School Administration</h3>
+                <ul class="school-meta-list">
+                    <li><i class="fas fa-phone-alt"></i> Main switchboard: <span class="placeholder-xxx" style="background:#d4e0e8;">+260760976399</span></li>
+                    <li><i class="fas fa-phone"></i> Accountant / Assistant: <span class="placeholder-xxx" style="background:#d4e0e8;">+260979518737</span></li>
+                    <li><i class="fas fa-envelope"></i> Official email: <span class="placeholder-xxx" style="background:#d4e0e8;">arakanboys2025@gmail.com</span></li>
+                    <li><i class="fas fa-fax"></i> Assistant: <span class="placeholder-xxx" style="background:#d4e0e8;">+260979518737</span></li> <!-- kept placeholder as no fax provided -->
+                </ul>
+                <div style="margin-top: 32px; background: #f6eee0; padding: 20px; border-radius: 24px;">
+                    <i class="fas fa-clock" style="color: var(--barracks-blue); font-size: 1.6rem;"></i> 
+                    <strong style="font-size: 1.2rem;">Office hours:</strong> 
+                    <span class="placeholder-xxx" style="display: inline-block; margin-top: 8px;">Mon–Thu 07:30–16:00</span> 
+                    <span class="placeholder-xxx" style="display: inline-block; margin-top: 8px;">Fri 07:30–15:30</span>
+                </div>
+            </div>
+            
+            <div class="physical-address">
+                <h4><i class="fas fa-map-pin"></i> Barracks address</h4>
+                <div class="address-line">
+                    <i class="fas fa-location-dot" style="color: var(--stripe-gold);"></i>
+                    <span><strong>Arakan Barracks</strong>, <span class="placeholder-xxx">Plot XX</span></span>
+                </div>
+                <div class="address-line">
+                    <i class="fas fa-road"></i>
+                    <span><span class="placeholder-xxx">Arakan Road, off Great East Road</span></span>
+                </div>
+                <div class="address-line">
+                    <i class="fas fa-city"></i>
+                    <span>Lusaka, Zambia · <span class="placeholder-xxx">10101</span></span>
+                </div>
+                <div class="address-line">
+                    <i class="fas fa-globe"></i>
+                    <span>Postal: P.O. Box <span class="placeholder-xxx">XXXXX</span>, Lusaka</span>
+                </div>
+                <div style="margin-top: 32px; background: var(--rifle-green); color: white; padding: 18px; border-radius: 20px;">
+                    <i class="fas fa-triangle-exclamation"></i> <strong>Gate access:</strong> All visitors must report to guardhouse. Restricted entry.
+                </div>
+            </div>
+        </div>
+
+        <!-- GOOGLE LANDMARK LOCATION — WITH REAL COORDINATES AND LIVE MAP LINK -->
+        <div class="container google-landmark">
+            <h4><i class="fas fa-map-location-dot"></i> GOOGLE LANDMARK — ARAKAN BARRACKS</h4>
+            <div class="map-container">
+                <div class="map-details">
+                    <div style="display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap;">
+                        <i class="fas fa-location-crosshairs"></i> 
+                        <strong>Landmark coordinates (Google):</strong>
+                    </div>
+                    <div style="font-size: clamp(1.3rem, 5vw, 1.6rem); font-weight: 800; letter-spacing: 2px; background: #1a3e50; padding: 12px 20px; border-radius: 60px; display: inline-block; color: white; align-self: flex-start;">
+                        <span style="background: #0f2c36; color: white; padding: 6px 18px; border-radius: 40px; border: 1px solid #7a9aa6;">-15.3875, 28.3228</span>
+                    </div>
+                    <div style="margin-top: 12px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px;">
+                        <i class="fas fa-location-dot"></i> 
+                        <strong>Label:</strong> Arakan Boys Secondary School, Lusaka
+                    </div>
+                    <div style="margin-top: 8px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px;">
+                        <i class="fas fa-google"></i> 
+                        <strong>Plus code:</strong> <span>XXXX+XX Lusaka</span>
+                    </div>
+                    <!-- updated map link: opens the provided Google Maps URL -->
+                    <a href="https://maps.app.goo.gl/2VoJX2T1x3cVQXA79" target="_blank" class="map-link" rel="noopener noreferrer"><i class="fab fa-google"></i> OPEN IN GOOGLE MAPS — LIVE</a>
+                </div>
+                <div class="map-placeholder-box">
+                    <i class="fas fa-map"></i>
+                    <span style="font-size: 1.4rem; font-weight: 800;">📍 STATIC MAP</span>
+                    <span style="color: var(--parade-grey);">(Google Maps link active)</span>
+                    <span style="margin-top: 8px;">-15.3875, 28.3228</span>
+                </div>
+            </div>
+            <p style="margin-top: 28px; font-style: italic; border-top: 1px solid #3a6673; padding-top: 24px; font-size: clamp(0.95rem, 3.5vw, 1.1rem);">
+                <i class="fas fa-circle-info"></i> Exact location: Arakan Barracks, Lusaka. Use the button above for live Google Maps navigation. The school is adjacent to the barracks headquarters.
+            </p>
+        </div>
+
+        <!-- NO OTHER CONTACTS: NO DEBS, NO PROVINCE, NO PARTNER NUMBERS, NO HEADMASTER, NO DEPARTMENTS. -->
+        <div class="container" style="margin-bottom: 32px;">
+            <div style="background: #f8f5ec; padding: 20px 28px; border-radius: 80px; border-left: 8px solid var(--barracks-blue);">
+                <p style="font-size: clamp(1rem, 3.8vw, 1.2rem); display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
+                    <i class="fas fa-check-circle" style="color: #198a5e; font-size: 1.8rem;"></i> 
+                    <span><strong>All other inquiries (admissions, academics, sports) –</strong> use the main school contact numbers above. Your call will be directed accordingly.</span>
+                </p>
+            </div>
+        </div>
+
+        <!-- BACK TO HOME — FULLY RESPONSIVE BUTTON -->
+        <div class="container" style="margin-bottom: 60px;">
+            <a href="index.html" style="display: inline-block; background: var(--barracks-blue); color: white; padding: 14px 32px; border-radius: 60px; text-decoration: none; font-weight: 700; letter-spacing: 1.5px; border: 2px solid var(--stripe-gold); width: auto; max-width: 100%; text-align: center;"><i class="fas fa-arrow-left"></i> RETURN TO HOMEPAGE</a>
+        </div>
+    </main>
+
+    <!-- FOOTER — UPDATED WITH REAL CONTACTS -->
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-school">
+                <h3>Arakan Boys<br>Secondary School</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Arakan Barracks, Lusaka, Zambia <span class="zambia-badge">ZAMBIA</span></p>
+                <p style="margin-top: 20px;"><i class="fas fa-shield-alt"></i> Military school · Est. 2014</p>
+                <p style="margin-top: 24px; font-style: italic; color: #c2d4dc;">Discipline and Hard work yields success</p>
+            </div>
+            
+            <div class="footer-contact">
+                <h5><i class="fas fa-address-card"></i> Contact & Connect</h5>
+                <ul>
+                    <li><i class="fas fa-phone-alt"></i> +260760976399</li>
+                    <li><i class="fas fa-envelope"></i> arakanboys2025@gmail.com</li>
+                    <li><i class="fas fa-location-dot"></i> Arakan Barracks, Lusaka</li>
+                    <li><i class="fas fa-globe"></i> <a href="contact.html">Official contact page</a></li>
+                    <li><i class="fas fa-clock"></i> Mon–Fri: 07:30 – 16:00</li>
+                </ul>
+            </div>
+        </div>
+        <div class="container copyright">
+            <p>© 2026 Arakan Boys Secondary School. Computer Science Club Project</p>
+            <p style="margin-top: 8px; font-size: 0.9rem;">Discipline and Hard work yields success</p>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            const toggle = document.getElementById('menuToggle');
+            const nav = document.getElementById('navLinks');
+            
+            if (toggle && nav) {
+                toggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    nav.classList.toggle('mobile-open');
+                });
+                
+                document.addEventListener('click', function(e) {
+                    if (!nav.contains(e.target) && !toggle.contains(e.target)) {
+                        nav.classList.remove('mobile-open');
+                    }
+                });
+            }
+            
+            const currentPage = window.location.pathname.split('/').pop() || 'contact.html';
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks.forEach(link => {
+                const linkPage = link.getAttribute('href');
+                if (linkPage === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+        })();
+    </script>
+</body>
+</html>

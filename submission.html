@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Submission · Arakan Boys Secondary School</title>
+    <!-- Playfair Display — primary font -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Inter fallback -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Same styles as your original submission.html */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :root {
+            --barracks-blue: #1a3e50;
+            --parade-grey: #4f5a62;
+            --stripe-gold: #b78c4a;
+            --rifle-green: #1e2f3a;
+            --pure-white: #f8fbfc;
+            --border-light: rgba(26, 62, 80, 0.15);
+            --divine-cream: #fcf8f0;
+            --receipt-parchment: #faf7f0;
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Playfair Display', serif;
+            background-color: var(--pure-white);
+            color: #1e2b36;
+            line-height: 1.5;
+            font-weight: 400;
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(255,255,255,0.97);
+            backdrop-filter: blur(8px);
+            border-bottom: 3px solid var(--barracks-blue);
+            z-index: 100;
+            width: 100%;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            width: 100%;
+            flex-wrap: wrap;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex: 1 1 auto;
+            min-width: 0;
+        }
+
+        .logo-dual {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .logo-shield-left,
+        .logo-shield-right {
+            width: 64px;
+            height: 64px;
+            border: 2px solid var(--barracks-blue);
+            background: #e8f0f3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .logo-shield-right {
+            border: 2px solid var(--stripe-gold);
+        }
+
+        .logo-shield-left img,
+        .logo-shield-right img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .school-name {
+            flex-grow: 1;
+            min-width: 0;
+        }
+
+        .school-name h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: var(--rifle-green);
+            line-height: 1.1;
+            letter-spacing: -0.5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .school-name span {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--parade-grey);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-top: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--rifle-green);
+            padding-bottom: 6px;
+            border-bottom: 2px solid transparent;
+            transition: 0.2s;
+            font-size: 1.05rem;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            border-bottom-color: var(--stripe-gold);
+            color: var(--barracks-blue);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            color: var(--rifle-green);
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        /* Submission page */
+        .submission-header {
+            padding: 40px 0 20px;
+            border-bottom: 2px solid var(--stripe-gold);
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .submission-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 8vw, 3rem);
+            font-weight: 900;
+            color: var(--rifle-green);
+            letter-spacing: -1px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .submission-header h2 i {
+            color: var(--barracks-blue);
+            font-size: clamp(2rem, 7vw, 2.8rem);
+        }
+
+        .receipt-badge {
+            background: var(--rifle-green);
+            color: white;
+            padding: 8px 24px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            letter-spacing: 2px;
+            border: 2px solid var(--stripe-gold);
+            white-space: nowrap;
+        }
+
+        .track-badge {
+            display: inline-block;
+            background: var(--stripe-gold);
+            color: #0e1c24;
+            padding: 6px 20px;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-left: 16px;
+        }
+
+        .receipt-card {
+            background: white;
+            border: 1px solid var(--border-light);
+            border-radius: 32px;
+            padding: clamp(32px, 6vw, 56px);
+            margin-bottom: 48px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.04);
+            border-left: 12px solid var(--stripe-gold);
+            width: 100%;
+        }
+
+        .receipt-intro {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 48px;
+            background: var(--divine-cream);
+            padding: 24px 32px;
+            border-radius: 60px;
+            border: 1px solid var(--border-light);
+        }
+
+        .receipt-intro i {
+            font-size: 2.4rem;
+            color: var(--stripe-gold);
+        }
+
+        .receipt-intro p {
+            font-size: clamp(1.1rem, 4vw, 1.25rem);
+            font-weight: 600;
+            color: var(--rifle-green);
+            flex: 1;
+        }
+
+        .receipt-stamp {
+            background: var(--barracks-blue);
+            color: white;
+            padding: 8px 28px;
+            border-radius: 60px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            font-size: 0.95rem;
+            border: 2px solid var(--stripe-gold);
+        }
+
+        .receipt-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+
+        .receipt-section {
+            background: var(--receipt-parchment);
+            border-radius: 28px;
+            padding: 28px 32px;
+            border: 1px solid #e2dcd0;
+            box-shadow: inset 0 2px 6px rgba(0,0,0,0.02);
+        }
+
+        .receipt-section h3 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--rifle-green);
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 2px dashed var(--stripe-gold);
+            padding-bottom: 16px;
+        }
+
+        .receipt-section h3 i {
+            color: var(--barracks-blue);
+            font-size: 1.6rem;
+        }
+
+        .data-row {
+            display: flex;
+            align-items: baseline;
+            padding: 14px 0;
+            border-bottom: 1px dotted var(--border-light);
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .data-label {
+            font-weight: 700;
+            color: var(--parade-grey);
+            min-width: 200px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .data-label i {
+            color: var(--stripe-gold);
+            width: 24px;
+            text-align: center;
+        }
+
+        .data-value {
+            font-weight: 600;
+            color: var(--rifle-green);
+            font-size: 1.1rem;
+            background: white;
+            padding: 4px 20px;
+            border-radius: 40px;
+            border: 1px solid #d8d8d8;
+            word-break: break-word;
+            flex: 1;
+        }
+
+        .composite-highlight {
+            background: var(--stripe-gold);
+            color: #0e1c24;
+            font-weight: 800;
+            padding: 6px 22px;
+            border-radius: 60px;
+            display: inline-block;
+            border: 2px solid white;
+        }
+
+        .empty-value {
+            color: var(--parade-grey);
+            font-style: italic;
+            background: #f0f0f0;
+            padding: 4px 20px;
+            border-radius: 40px;
+        }
+
+        .email-action-panel {
+            background: linear-gradient(145deg, #1a3e50, #15313f);
+            border-radius: 32px;
+            padding: 40px;
+            margin-top: 32px;
+            color: white;
+            border-bottom: 6px solid var(--stripe-gold);
+        }
+
+        .email-action-panel h4 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            color: white;
+        }
+
+        .email-action-panel h4 i {
+            color: var(--stripe-gold);
+        }
+
+        .btn-email {
+            background: var(--stripe-gold);
+            color: #0e1c24;
+            padding: 18px 48px;
+            border-radius: 60px;
+            font-weight: 800;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            gap: 16px;
+            text-decoration: none;
+            border: 2px solid white;
+            box-shadow: 0 8px 0 #7e6032;
+            transition: 0.1s ease;
+        }
+
+        .btn-email:hover {
+            background: #d9a14a;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 0 #7e6032;
+        }
+
+        .btn-email i {
+            font-size: 1.4rem;
+        }
+
+        .email-note {
+            font-style: italic;
+            color: #cbdbe3;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .no-data-warning {
+            background: #fbe9e7;
+            border-left: 12px solid #c62828;
+            padding: 32px;
+            border-radius: 32px;
+            margin-bottom: 48px;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .no-data-warning i {
+            font-size: 3rem;
+            color: #c62828;
+        }
+
+        .no-data-warning p {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #5e1b1b;
+        }
+
+        .action-buttons {
+            margin-bottom: 60px;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: 60px;
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            border: 2px solid var(--stripe-gold);
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            background: var(--barracks-blue);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #134853;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: var(--parade-grey);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #5d6871;
+            transform: translateY(-2px);
+        }
+
+        footer {
+            background: #0f1f28;
+            color: #e0ecf2;
+            padding: 64px 0 32px;
+            border-top: 6px solid var(--barracks-blue);
+            width: 100%;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-bottom: 48px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .footer-school h3 {
+            font-family: 'Playfair Display', serif;
+            color: white;
+            font-size: clamp(1.5rem, 5vw, 1.8rem);
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .zambia-badge {
+            display: inline-block;
+            background: #198a5e;
+            color: white;
+            padding: 4px 16px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-left: 10px;
+            text-transform: uppercase;
+        }
+
+        .footer-contact h5 {
+            font-family: 'Playfair Display', serif;
+            color: white;
+            font-size: clamp(1.2rem, 4.5vw, 1.3rem);
+            font-weight: 700;
+            margin-bottom: 24px;
+            border-bottom: 2px solid var(--stripe-gold);
+            display: inline-block;
+            padding-bottom: 8px;
+        }
+
+        .footer-contact ul {
+            list-style: none;
+        }
+
+        .footer-contact li {
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .footer-contact i {
+            width: 24px;
+            color: var(--stripe-gold);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 32px;
+            border-top: 1px solid #2a4450;
+            color: #a1b7c2;
+        }
+
+        @media (max-width: 992px) {
+            .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                gap: 20px;
+                padding: 30px 0 20px;
+            }
+            .nav-links.mobile-open {
+                display: flex;
+            }
+            .menu-toggle {
+                display: block;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .data-label {
+                min-width: 100%;
+            }
+            .btn-email {
+                width: 100%;
+                justify-content: center;
+            }
+            .action-buttons {
+                flex-direction: column;
+            }
+            .action-buttons a {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container navbar">
+            <div class="logo-area">
+                <div class="logo-dual">
+                    <div class="logo-shield-left">
+                        <img src="emblem-left.png" alt="Arakan left emblem" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-shield\' style=\'font-size:2rem;color:#1a3e50;\'></i>'">
+                    </div>
+                    <div class="logo-shield-right">
+                        <img src="emblem-right.png" alt="Arakan right emblem" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-shield-haltered\' style=\'font-size:2rem;color:#b78c4a;\'></i>'">
+                    </div>
+                </div>
+                <div class="school-name">
+                    <h1>ARAKAN BOYS</h1>
+                    <span>SECONDARY SCHOOL · LUSAKA</span>
+                </div>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="portal.html">Portal</a>
+                <a href="news.html">News</a>
+                <a href="contact.html">Contact</a>
+              <a href="gallary.html">Gallary</a>
+            </div>
+            <div class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container submission-header">
+            <h2>
+                <i class="fas fa-check-circle"></i> 
+                APPLICATION RECEIPT
+            </h2>
+            <span class="receipt-badge"><i class="fas fa-envelope"></i> SUBMITTED · 2026</span>
+        </div>
+
+        <div class="container">
+            <div id="receiptContainer"></div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-school">
+                <h3>Arakan Boys<br>Secondary School</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Arakan Barracks, Lusaka, Zambia <span class="zambia-badge">ZAMBIA</span></p>
+                <p style="margin-top: 20px;"><i class="fas fa-shield-alt"></i> Military school · Est. 2014</p>
+                <p style="margin-top: 24px; font-style: italic; color: #c2d4dc;">Discipline and Hard work yields success</p>
+            </div>
+            
+            <div class="footer-contact">
+                <h5><i class="fas fa-address-card"></i> Contact & Connect</h5>
+                <ul>
+                    <li><i class="fas fa-phone-alt"></i> +260+260977628968</li>
+                    <li><i class="fas fa-envelope"></i>arakanboys2025@gmail.com </li>
+                    <li><i class="fas fa-location-dot"></i> Arakan Barracks, Lusaka</li>
+                    <li><i class="fas fa-globe"></i> <a href="contact.html" style="color: #cbdbe3; text-decoration: none;">Official contact page</a></li>
+                    <li><i class="fas fa-clock"></i> Mon–Fri: 07:30 – 16:00</li>
+                </ul>
+            </div>
+        </div>
+        <div class="container copyright">
+            <p>© 2026 Arakan Boys Secondary School. Computer Science Club Project</p>
+            <p style="margin-top: 8px; font-size: 0.9rem;">Discipline and Hard work yields success</p>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            // MOBILE MENU TOGGLE
+            const toggle = document.getElementById('menuToggle');
+            const nav = document.getElementById('navLinks');
+            
+            if (toggle && nav) {
+                toggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    nav.classList.toggle('mobile-open');
+                });
+                
+                document.addEventListener('click', function(e) {
+                    if (!nav.contains(e.target) && !toggle.contains(e.target)) {
+                        nav.classList.remove('mobile-open');
+                    }
+                });
+            }
+            
+            // ---------- LOAD FORM DATA FROM SESSION STORAGE ----------
+            function renderReceipt() {
+                const container = document.getElementById('receiptContainer');
+                
+                // Get data from sessionStorage
+                let formData = null;
+                try {
+                    const stored = sessionStorage.getItem('arakanEnrollment');
+                    if (stored) {
+                        formData = JSON.parse(stored);
+                    }
+                } catch(e) {
+                    // Do nothing
+                }
+
+                // NO DATA — show warning
+                if (!formData) {
+                    container.innerHTML = `
+                        <div class="no-data-warning">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <div>
+                                <p>No application data found.</p>
+                                <p style="font-size: 1.1rem; font-weight: normal; margin-top: 8px;">Please complete the enrollment form first. <a href="enroll.html" style="color: #1a3e50; font-weight: 700; text-decoration: underline;">Go to Enrollment →</a></p>
+                            </div>
+                        </div>
+                    `;
+                    return;
+                }
+
+                // HAS DATA — render receipt
+                const track = formData.track || 'Not specified';
+                const fullName = formData.fullName || '—';
+                const desiredForm = formData.desiredForm || '—';
+                const compositeScore = formData.compositeScore || '—';
+                const location = formData.location || '—';
+                const nationality = formData.nationality || '—';
+                const formerSchool = formData.formerSchool || '—';
+                const town = formData.town || '—';
+                const district = formData.district || '—';
+                const province = formData.province || '—';
+                const dob = formData.dob || '—';
+                const subjects = formData.subjects || '—';
+                const special = formData.special || '—';
+                const additional = formData.additional || '—';
+
+                // Format date if present
+                let formattedDob = dob;
+                if (dob && dob !== '—') {
+                    const date = new Date(dob);
+                    formattedDob = date.toLocaleDateString('en-ZM', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    });
+                }
+
+                const receiptHTML = `
+                    <div class="receipt-card">
+                        <div class="receipt-intro">
+                            <i class="fas fa-scroll"></i>
+                            <p>
+                                Your application has been registered. 
+                                <strong style="color: var(--barracks-blue);">${track}</strong>
+                                <span class="track-badge"><i class="fas fa-check"></i> 2026 INTAKE</span>
+                            </p>
+                            <span class="receipt-stamp"><i class="fas fa-check"></i> VERIFIED</span>
+                        </div>
+
+                        <div class="receipt-grid">
+                            <!-- PERSONAL INFORMATION -->
+                            <div class="receipt-section">
+                                <h3><i class="fas fa-user-graduate"></i> Applicant Details</h3>
+                                <div class="data-row">
+                                    <span class="data-label"><i class="fas fa-user"></i> Full Name</span>
+                                    <span class="data-value">${escapeHTML(fullName)}</span>
+                                </div>
+                                <div class="data-row">
+                                    <span class="data-label"><i class="fas fa-layer-group"></i> Desired ${track.includes('Junior') ? 'Form' : 'Grade'}</span>
+                                    <span class="data-value">${escapeHTML(desiredForm)}</span>
+                                </div>
+                                <div class="data-row">
+                                    <span class="data-label"><i class="fas fa-trophy"></i> ${track.includes('Junior') ? 'Grade 7' : 'Grade 9'} Composite</span>
+                                    <span class="data-value">${compositeScore !== '—' ? `<span class="composite-highlight">${escapeHTML(compositeScore)} / 900</span>` : '—'}</span>
+                                </div>
+                                <div class="data-row">
+                                    <span class="data-label"><i class="fas fa-cake-candles"></i> Date of Birth</span>
+                                    <span class="data-value">${escapeHTML(formattedDob)}</span>
+                                </div>
+                                <div class="data-row">
+                                    <span class="data-label"><i class="fas fa-flag"></i> Nationality</span>
+                                    <span class="data-value">${escapeHTML(nationality)}</span>
+                                </div>
+                                <div class="data-row">
+                                    <span class="data-label"><i class="fas fa-school"></i> ${track.includes('Junior') ? 'Former Primary School' : 'Previous Secondary School'}</span>
+                                    <span class="data-value">${escapeHTML(formerSchool)}</span>
+                                </div>
+                            </div>
+
+                            <!-- ADDRESS -->
+                            <div class="receipt-section">
+                                <h3><i class="fas fa-location-dot"></i> Address & Location</h3>
+                                <div class="data-row">
+                                    <span class="data-label"><i class="fas fa-map-pin"></i> Current Location</span>
+                                    <span class="data-value">${escapeHTML(location)}</span>
+                                </div>
+                                <div class="data-row">
+                                    <span class="data-label"><i class="fas fa-city"></i> Town</span>
+                                    <span class="data-value">${escapeHTML(town)}</span>
+                                </div>
+                                <div class="data-row">
+                                    <span class="data-label"><i class="fas fa-map"></i> District</span>
+                                    <span class="data-value">${escapeHTML(district)}</span>
+                                </div>
+                                <div class="data-row">
+                                    <span class="data-label"><i class="fas fa-globe"></i> Province</span>
+                                    <span class="data-value">${escapeHTML(province)}</span>
+                                </div>
+                            </div>
+
+                            <!-- SUBJECTS (for Senior) -->
+                            ${track.includes('Senior') && subjects !== '—' ? `
+                            <div class="receipt-section">
+                                <h3><i class="fas fa-book-open"></i> Preferred Subjects</h3>
+                                <div class="data-row">
+                                    <span class="data-label"><i class="fas fa-book"></i> Subject Selection</span>
+                                    <span class="data-value">${escapeHTML(subjects)}</span>
+                                </div>
+                            </div>
+                            ` : ''}
+
+                            <!-- ADDITIONAL -->
+                            <div class="receipt-section">
+                                <h3><i class="fas fa-file-lines"></i> Additional Information</h3>
+                                <div class="data-row">
+                                    <span class="data-label"><i class="fas fa-hand-holding-heart"></i> Special Considerations</span>
+                                    <span class="data-value">${escapeHTML(special) || 'None provided'}</span>
+                                </div>
+                                <div class="data-row">
+                                    <span class="data-label"><i class="fas fa-pen"></i> Additional Info</span>
+                                    <span class="data-value">${escapeHTML(additional) || 'None provided'}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- EMAIL ACTION PANEL -->
+                        <div class="email-action-panel">
+                            <h4><i class="fas fa-envelope-open-text"></i> Submit to Admissions</h4>
+                            <div style="display: flex; flex-wrap: wrap; gap: 28px; align-items: center; margin-bottom: 24px;">
+                                <i class="fas fa-shield-haltered" style="font-size: 2.5rem; color: var(--stripe-gold);"></i>
+                                <p style="font-size: 1.2rem; font-weight: 600;">Review your receipt, then click below to send this application to the school.</p>
+                            </div>
+                            
+                            <a href="#" id="mailtoLink" class="btn-email" target="_blank">
+                                <i class="fas fa-paper-plane"></i> SEND APPLICATION VIA EMAIL
+                            </a>
+                            
+                            <div class="email-note">
+                                <i class="fas fa-info-circle"></i>
+                                <span>Your default email client will open with all details pre-filled. Send to <strong>admissions@arakanboys.edu.zm</strong>.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ACTION BUTTONS -->
+                    <div class="action-buttons">
+                        <a href="enroll.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> BACK TO ENROLLMENT</a>
+                        <a href="index.html" class="btn btn-primary"><i class="fas fa-home"></i> HOME</a>
+                    </div>
+                `;
+
+                container.innerHTML = receiptHTML;
+
+                // Generate mailto link
+                generateMailtoLink(formData);
+            }
+
+            // Helper: escape HTML
+            function escapeHTML(str) {
+                if (str === '—' || str === null || str === undefined) return '—';
+                return String(str)
+                    .replace(/&/g, '&amp;')
+                    .replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;')
+                    .replace(/"/g, '&quot;')
+                    .replace(/'/g, '&#039;');
+            }
+
+            // Generate mailto link
+            function generateMailtoLink(data) {
+                const schoolEmail = 'arakanboys2025@gmail.com';
+                const subject = `Enrollment Application · ${data.fullName || 'No name'} · ${data.track || 'Track not specified'}`;
+                
+                const bodyLines = [
+                    'ARAKAN BOYS SECONDARY SCHOOL · OFFICIAL ENROLLMENT APPLICATION',
+                    '================================================================',
+                    '',
+                    `TRACK: ${data.track || 'Not specified'}`,
+                    `FULL NAME: ${data.fullName || 'Not provided'}`,
+                    `DESIRED ${data.track?.includes('Junior') ? 'FORM' : 'GRADE'}: ${data.desiredForm || 'Not provided'}`,
+                    `COMPOSITE SCORE: ${data.compositeScore || 'Not provided'} / 900`,
+                    `DATE OF BIRTH: ${data.dob || 'Not provided'}`,
+                    `NATIONALITY: ${data.nationality || 'Not provided'}`,
+                    `FORMER SCHOOL: ${data.formerSchool || 'Not provided'}`,
+                    `CURRENT LOCATION: ${data.location || 'Not provided'}`,
+                    '',
+                    '--- ADDRESS ---',
+                    `TOWN: ${data.town || 'Not provided'}`,
+                    `DISTRICT: ${data.district || 'Not provided'}`,
+                    `PROVINCE: ${data.province || 'Not provided'}`,
+                    '',
+                    ...(data.subjects ? ['--- PREFERRED SUBJECTS ---', `${data.subjects}`, ''] : []),
+                    '--- ADDITIONAL INFORMATION ---',
+                    `SPECIAL CONSIDERATIONS: ${data.special || 'None provided'}`,
+                    `ADDITIONAL INFORMATION: ${data.additional || 'None provided'}`,
+                    '',
+                    '================================================================',
+                    'This application was submitted via the official Arakan Boys enrollment portal.',
+                    'Please reply to this email with the admission decision.',
+                    '================================================================'
+                ];
+
+                const body = encodeURIComponent(bodyLines.join('\n'));
+                const mailtoHref = `mailto:${schoolEmail}?subject=${encodeURIComponent(subject)}&body=${body}`;
+                
+                setTimeout(() => {
+                    const mailtoLink = document.getElementById('mailtoLink');
+                    if (mailtoLink) {
+                        mailtoLink.href = mailtoHref;
+                    }
+                }, 50);
+            }
+
+            // Initialize
+            renderReceipt();
+        })();
+    </script>
+</body>
+</html>

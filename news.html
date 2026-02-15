@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>News · Arakan Boys Secondary School</title>
+    <!-- Playfair Display — primary font throughout, exactly as instructed -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Inter only as geometric fallback/accents — but main text stays Playfair -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ---------- GLOBAL — PLAYFAIR DOMINANCE, MILITARY PRECISION, FACTS ONLY ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :root {
+            --barracks-blue: #1a3e50;
+            --parade-grey: #4f5a62;
+            --stripe-gold: #b78c4a;
+            --rifle-green: #1e2f3a;
+            --bone-white: #b0b0b0;
+            --pure-white: #f8fbfc;
+            --border-light: rgba(26, 62, 80, 0.15);
+            --news-accent: #b78c4a;
+        }
+
+        body {
+            font-family: 'Playfair Display', serif;
+            background-color: var(--pure-white);
+            color: #1e2b36;
+            line-height: 1.5;
+            font-weight: 400;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ---------- HEADER — STICKY, CRISP, DUAL EMBLEM (exactly from index) ---------- */
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(255,255,255,0.96);
+            backdrop-filter: blur(8px);
+            border-bottom: 3px solid var(--barracks-blue);
+            z-index: 100;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            width: 100%;
+        }
+
+        .logo-dual {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        .logo-shield-left,
+        .logo-shield-right {
+            width: 64px;
+            height: 64px;
+            border: 2px solid var(--barracks-blue);
+            background: #e8f0f3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .logo-shield-right {
+            border: 2px solid var(--stripe-gold);
+        }
+
+        .logo-shield-left img,
+        .logo-shield-right img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .school-name {
+            flex-grow: 1;
+        }
+
+        .school-name h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: var(--rifle-green);
+            line-height: 1.1;
+            letter-spacing: -0.5px;
+        }
+
+        .school-name span {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--parade-grey);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-top: 4px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--rifle-green);
+            padding-bottom: 6px;
+            border-bottom: 2px solid transparent;
+            transition: 0.2s;
+            font-size: 1.05rem;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            border-bottom-color: var(--stripe-gold);
+            color: var(--barracks-blue);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            color: var(--rifle-green);
+            cursor: pointer;
+        }
+
+        /* ---------- NEWS PAGE SPECIFIC STYLES — ORGANIZED, DATED, MILITARY DRILL ---------- */
+        .news-header {
+            padding: 40px 0 20px;
+            border-bottom: 2px solid var(--stripe-gold);
+            margin-bottom: 40px;
+        }
+
+        .news-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--rifle-green);
+            letter-spacing: -1px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .news-header h2 i {
+            color: var(--barracks-blue);
+            font-size: 2.8rem;
+        }
+
+        .date-context {
+            display: inline-block;
+            background: var(--barracks-blue);
+            color: white;
+            padding: 10px 28px;
+            border-radius: 60px;
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            margin-top: 12px;
+            border: 2px solid var(--stripe-gold);
+        }
+
+        /* ----- NEWS GRID — FOUR CARDS, EACH WITH MONDAY DATE, CLEAN ----- */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 36px;
+            margin-bottom: 70px;
+        }
+
+        .news-card {
+            background: white;
+            border: 1px solid var(--border-light);
+            border-radius: 24px;
+            padding: 28px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.02);
+            transition: all 0.2s;
+            border-left: 8px solid var(--stripe-gold);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .news-card:hover {
+            box-shadow: 0 16px 28px rgba(26,62,80,0.08);
+            transform: translateY(-3px);
+        }
+
+        .news-meta {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 16px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .news-day {
+            background: var(--rifle-green);
+            color: white;
+            font-weight: 700;
+            padding: 6px 16px;
+            border-radius: 60px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 1px solid var(--stripe-gold);
+        }
+
+        .news-date {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--barracks-blue);
+            background: #ecf2f5;
+            padding: 6px 20px;
+            border-radius: 60px;
+        }
+
+        .news-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.65rem;
+            font-weight: 800;
+            color: var(--rifle-green);
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+
+        .news-detail {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: #1e3e4c;
+            margin-bottom: 24px;
+            line-height: 1.45;
+            flex: 1;
+        }
+
+        .news-audience {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #eef4f8;
+            padding: 10px 20px;
+            border-radius: 40px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--barracks-blue);
+            margin-top: 12px;
+            align-self: flex-start;
+            border: 1px solid #c1d3db;
+        }
+
+        .news-audience i {
+            color: var(--stripe-gold);
+        }
+
+        .back-link {
+            display: inline-block;
+            margin: 30px 0 60px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--barracks-blue);
+            text-decoration: none;
+            border-bottom: 3px solid var(--stripe-gold);
+            padding-bottom: 6px;
+        }
+
+        .back-link i {
+            margin-right: 10px;
+        }
+
+        /* ---------- PARTNERS / FOOTER — same as index, to keep identity ---------- */
+        .partners {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            background: white;
+            padding: 32px 40px;
+            border-radius: 80px;
+            border: 1px solid var(--barracks-blue);
+            margin-bottom: 60px;
+        }
+
+        .partner-item {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            color: var(--rifle-green);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.1rem;
+        }
+
+        footer {
+            background: #0f1f28;
+            color: #e0ecf2;
+            padding: 64px 0 32px;
+            border-top: 6px solid var(--barracks-blue);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1.5fr;
+            gap: 48px;
+            margin-bottom: 48px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .footer-school h3 {
+            font-family: 'Playfair Display', serif;
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .footer-school p {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .zambia-badge {
+            display: inline-block;
+            background: #198a5e;
+            color: white;
+            padding: 4px 16px;
+            border-radius: 40px;
+            font-family: 'Playfair Display', serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-left: 10px;
+            text-transform: uppercase;
+        }
+
+        .footer-contact {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .footer-contact h5 {
+            font-family: 'Playfair Display', serif;
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            border-bottom: 2px solid var(--stripe-gold);
+            display: inline-block;
+            padding-bottom: 8px;
+        }
+
+        .footer-contact ul {
+            list-style: none;
+        }
+
+        .footer-contact li {
+            margin-bottom: 18px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.05rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .footer-contact i {
+            width: 24px;
+            color: var(--stripe-gold);
+            font-size: 1.2rem;
+        }
+
+        .footer-contact a {
+            color: #cbdbe3;
+            text-decoration: none;
+        }
+
+        .footer-contact a:hover {
+            color: var(--stripe-gold);
+            border-bottom: 1px dotted var(--stripe-gold);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 32px;
+            border-top: 1px solid #2a4450;
+            font-family: 'Playfair Display', serif;
+            color: #a1b7c2;
+            font-size: 0.95rem;
+        }
+
+        /* ---------- RESPONSIVE — EXACT SENSIBILITY ---------- */
+        @media (max-width: 992px) {
+            .footer-grid,
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+            .nav-links {
+                display: none;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .nav-links.mobile-open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                padding: 30px;
+                box-shadow: 0 20px 20px rgba(0,0,0,0.05);
+                border-top: 1px solid var(--border-light);
+            }
+            .footer-grid {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+            .school-name h1 {
+                font-size: 1.3rem;
+            }
+            .logo-shield-left,
+            .logo-shield-right {
+                width: 52px;
+                height: 52px;
+            }
+            .news-header h2 {
+                font-size: 2.4rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .logo-shield-left,
+            .logo-shield-right {
+                width: 44px;
+                height: 44px;
+            }
+            .news-header h2 {
+                font-size: 2rem;
+            }
+            .news-card h3 {
+                font-size: 1.4rem;
+            }
+            .partners {
+                flex-direction: column;
+                align-items: center;
+                gap: 16px;
+                border-radius: 40px;
+                padding: 28px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container navbar">
+            <div class="logo-area">
+                <div class="logo-dual">
+                    <!-- LEFT SHIELD: first emblem placeholder -->
+                    <div class="logo-shield-left">
+                        <img src="emblem-left.png" alt="Arakan left emblem" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-shield\' style=\'font-size:2.5rem;color:#1a3e50;\'></i>'">
+                    </div>
+                    <!-- RIGHT SHIELD: second emblem placeholder -->
+                    <div class="logo-shield-right">
+                        <img src="emblem-right.png" alt="Arakan right emblem" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-shield-haltered\' style=\'font-size:2.5rem;color:#b78c4a;\'></i>'">
+                    </div>
+                </div>
+                <div class="school-name">
+                    <h1>ARAKAN BOYS</h1>
+                    <span>SECONDARY SCHOOL · LUSAKA</span>
+                </div>
+            </div>
+            <!-- NAVIGATION — same as index; News active -->
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="portal.html">Portal</a>
+                <a href="news.html" class="active">News</a>
+                <a href="contact.html">Contact</a>
+                <a href="gallary.html">Gallary</a>
+            </div>
+            <div class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- NEWS PAGE HEADER — dedicated, clean, military tone -->
+        <div class="container news-header">
+            <h2>
+                <i class="fas fa-bulletin" style="font-family: 'Font Awesome 6 Free'; font-weight: 900;">📋</i> 
+                SCHOOL NEWS & ANNOUNCEMENTS
+            </h2>
+            <span class="date-context"><i class="fas fa-calendar-alt"></i> ISSUED: WEEK 5 · 2026</span>
+            <p style="font-size: 1.3rem; font-family: 'Playfair Display', serif; font-weight: 600; margin-top: 20px; color: var(--parade-grey);">
+                <i class="fas fa-flag" style="color: var(--stripe-gold);"></i> Four official notices — all issued Monday, 09 February 2026
+            </p>
+        </div>
+
+        <!-- NEWS GRID — FOUR CARDS, PRECISE DATING, ORGANIZED HIERARCHY -->
+        <div class="container news-grid">
+            
+            <!-- 1. SATURDAY TUTORING & PREP — GRADE 12 -->
+            <div class="news-card">
+                <div class="news-meta">
+                    <span class="news-day"><i class="far fa-calendar-check"></i> MONDAY</span>
+                    <span class="news-date">09 FEB 2026</span>
+                </div>
+                <h3>📘 Saturday classes & prep</h3>
+                <div class="news-detail">
+                    <strong>Grade 12</strong> students are hereby required to attend Saturday tutoring sessions, effective immediately. Compulsory prep attendance also commences this Saturday. Detailed timetable to be posted outside staff room.
+                </div>
+                <div class="news-audience">
+                    <i class="fas fa-user-graduate"></i> TARGET: GRADE 12 ONLY
+                </div>
+            </div>
+            
+            <!-- 2. KNOCK-OFF TIMINGS REVISED — GR 10–12 vs FORM 1–2 -->
+            <div class="news-card">
+                <div class="news-meta">
+                    <span class="news-day"><i class="far fa-calendar-check"></i> MONDAY</span>
+                    <span class="news-date">09 FEB 2026</span>
+                </div>
+                <h3>⏱️ Dismissal schedule update</h3>
+                <div class="news-detail">
+                    With immediate effect, <strong>Grades 10–12</strong> will knock off at <span style="font-weight: 800; color: var(--barracks-blue);">16:30 hrs</span>.  
+                    <strong>Form 1 & Form 2</strong> pupils will be dismissed at <span style="font-weight: 800; color: var(--barracks-blue);">15:20 hrs</span>.  
+                    All buses and gate procedures adjusted accordingly.
+                </div>
+                <div class="news-audience">
+                    <i class="fas fa-users"></i> TARGET: GR 10–12 & FORM 1–2
+                </div>
+            </div>
+            
+            <!-- 3. MINISTRY RESTOCKS LIBRARY -->
+            <div class="news-card">
+                <div class="news-meta">
+                    <span class="news-day"><i class="far fa-calendar-check"></i> MONDAY</span>
+                    <span class="news-date">09 FEB 2026</span>
+                </div>
+                <h3>📚 Library reinforcement</h3>
+                <div class="news-detail">
+                    Ministry of General Education has approved immediate restocking of the school library. New reference texts, science manuals, and literature sets will arrive this week. Prefects to assist in cataloguing.
+                </div>
+                <div class="news-audience">
+                    <i class="fas fa-book-open"></i> ALL STUDENTS & STAFF
+                </div>
+            </div>
+            
+            <!-- 4. STAMPEDES / REGISTRATION CONTROL — STRICT ORDER -->
+            <div class="news-card">
+                <div class="news-meta">
+                    <span class="news-day"><i class="far fa-calendar-check"></i> MONDAY</span>
+                    <span class="news-date">09 FEB 2026</span>
+                </div>
+                <h3>🚫 Gate registration: order</h3>
+                <div class="news-detail">
+                    <span style="font-weight: 800;">Stampedes are strongly discouraged.</span> Registration will be conducted before morning parade and after final dismissal. Pupils are forbidden from gathering at the gate during unauthorized hours. Prefects will enforce.
+                </div>
+                <div class="news-audience">
+                    <i class="fas fa-shield-haltered"></i> ALL PUPILS — MANDATORY
+                </div>
+            </div>
+        </div>
+        
+        <!-- BRIEF SUMMARY NOTE — DRILL STYLE, UNDERSCORES MONDAY UNITY -->
+        <div class="container" style="margin-bottom: 48px;">
+            <div style="background: #ebeff2; padding: 24px 32px; border-radius: 60px; border-left: 6px solid var(--stripe-gold);">
+    
+                <p style="font-family: 'Playfair Display', serif; font-size: 1.2rem; display: flex; align-items: center; gap: 14px;">
+                    <i class="fas fa-scroll" style="color: var(--barracks-blue); font-size: 2rem;"></i> 
+                    <span><strong>09 February 2026 — four official notices issued.</strong> All directives take immediate effect. Non‑compliance undermines battalion order.</span>
+                </p>
+            </div>
+        </div>
+
+        <!-- BACK TO HOME — also functions as navigation continuity -->
+        <div class="container">
+            <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> RETURN TO HOMEPAGE</a>
+        </div>
+
+    </main>
+
+    <!-- FOOTER — CONTACT ONLY, SAME AS INDEX, NO COMMAND/LEGACY -->
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-school">
+                <h3>Arakan Boys<br>Secondary School</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Arakan Barracks, Lusaka, Zambia <span class="zambia-badge">ZAMBIA</span></p>
+                <p style="margin-top: 20px;"><i class="fas fa-shield-alt"></i> Military school · Est. 2014</p>
+                <p style="margin-top: 24px; font-style: italic; color: #c2d4dc;">Discipline and Hard work yields success</p>
+            </div>
+            
+            <div class="footer-contact">
+                <h5><i class="fas fa-address-card"></i> Contact & Connect</h5>
+                <ul>
+                    <li><i class="fas fa-phone-alt"></i> +260760976399</li>
+                    <li><i class="fas fa-envelope"></i> arakanboys2025@gmail.com</li>
+                    <li><i class="fas fa-location-dot"></i> Arakan Barracks, Lusaka</li>
+                    <li><i class="fas fa-globe"></i> <a href="contact.html">Official contact page</a></li>
+                    <li><i class="fas fa-clock"></i> Mon–Fri: 07:30 – 16:00</li>
+                </ul>
+            </div>
+        </div>
+        <div class="container copyright">
+            <p>© 2026 Arakan Boys Secondary School. Computer Science Club Project</p>
+            <p style="margin-top: 8px; font-size: 0.9rem;">Discipline and Hard work yields success</p>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            // MOBILE MENU TOGGLE — same as index
+            const toggle = document.getElementById('menuToggle');
+            const nav = document.getElementById('navLinks');
+            
+            if (toggle && nav) {
+                toggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    nav.classList.toggle('mobile-open');
+                });
+                
+                document.addEventListener('click', function(e) {
+                    if (!nav.contains(e.target) && !toggle.contains(e.target)) {
+                        nav.classList.remove('mobile-open');
+                    }
+                });
+            }
+            
+            // ACTIVE NAV HIGHLIGHT based on current page (news.html)
+            const currentPage = window.location.pathname.split('/').pop() || 'news.html';
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            navLinks.forEach(link => {
+                const linkPage = link.getAttribute('href');
+                if (linkPage === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+        })();
+    </script>
+</body>
+</html>

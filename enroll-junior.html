@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Junior Enrollment · Form 1-2 · Arakan Boys</title>
+    <!-- Playfair Display — primary font -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Inter fallback -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ---------- GLOBAL — PLAYFAIR DOMINANCE, SACRED PRECISION ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :root {
+            --barracks-blue: #1a3e50;
+            --parade-grey: #4f5a62;
+            --stripe-gold: #b78c4a;
+            --rifle-green: #1e2f3a;
+            --pure-white: #f8fbfc;
+            --border-light: rgba(26, 62, 80, 0.15);
+            --divine-cream: #fcf8f0;
+            --enrollment-velvet: #1e2f3a;
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Playfair Display', serif;
+            background-color: var(--pure-white);
+            color: #1e2b36;
+            line-height: 1.5;
+            font-weight: 400;
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ---------- HEADER — STICKY, DUAL EMBLEM ---------- */
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(255,255,255,0.97);
+            backdrop-filter: blur(8px);
+            border-bottom: 3px solid var(--barracks-blue);
+            z-index: 100;
+            width: 100%;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            width: 100%;
+            flex-wrap: wrap;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex: 1 1 auto;
+            min-width: 0;
+        }
+
+        .logo-dual {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .logo-shield-left,
+        .logo-shield-right {
+            width: 64px;
+            height: 64px;
+            border: 2px solid var(--barracks-blue);
+            background: #e8f0f3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .logo-shield-right {
+            border: 2px solid var(--stripe-gold);
+        }
+
+        .logo-shield-left img,
+        .logo-shield-right img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .school-name {
+            flex-grow: 1;
+            min-width: 0;
+        }
+
+        .school-name h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: var(--rifle-green);
+            line-height: 1.1;
+            letter-spacing: -0.5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .school-name span {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--parade-grey);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-top: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--rifle-green);
+            padding-bottom: 6px;
+            border-bottom: 2px solid transparent;
+            transition: 0.2s;
+            font-size: 1.05rem;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            border-bottom-color: var(--stripe-gold);
+            color: var(--barracks-blue);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            color: var(--rifle-green);
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        /* ---------- ENROLLMENT PAGE — DIVINE FORM ---------- */
+        .enrollment-header {
+            padding: 40px 0 20px;
+            border-bottom: 2px solid var(--stripe-gold);
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .enrollment-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 8vw, 3rem);
+            font-weight: 900;
+            color: var(--rifle-green);
+            letter-spacing: -1px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .enrollment-header h2 i {
+            color: var(--barracks-blue);
+            font-size: clamp(2rem, 7vw, 2.8rem);
+        }
+
+        .enrollment-badge {
+            background: var(--rifle-green);
+            color: white;
+            padding: 8px 24px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            letter-spacing: 2px;
+            border: 2px solid var(--stripe-gold);
+            white-space: nowrap;
+        }
+
+        .track-indicator {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: #e3f0f5;
+            padding: 16px 32px;
+            border-radius: 60px;
+            margin-bottom: 32px;
+            border-left: 8px solid var(--barracks-blue);
+            flex-wrap: wrap;
+        }
+
+        .track-indicator i {
+            font-size: 2.2rem;
+            color: var(--barracks-blue);
+        }
+
+        .track-indicator .track-name {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--rifle-green);
+        }
+
+        .track-indicator .track-dates {
+            color: var(--parade-grey);
+            background: white;
+            padding: 6px 20px;
+            border-radius: 40px;
+            margin-left: auto;
+            font-weight: 600;
+        }
+
+        /* ----- FORM CARD — SACRED, ORDERED, BEAUTIFUL ----- */
+        .form-card {
+            background: white;
+            border: 1px solid var(--border-light);
+            border-radius: 32px;
+            padding: clamp(32px, 6vw, 56px);
+            margin-bottom: 60px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.04);
+            border-left: 12px solid var(--barracks-blue);
+            width: 100%;
+        }
+
+        .form-intro {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 48px;
+            background: var(--divine-cream);
+            padding: 24px 32px;
+            border-radius: 60px;
+            border: 1px solid var(--border-light);
+        }
+
+        .form-intro i {
+            font-size: 2.4rem;
+            color: var(--stripe-gold);
+        }
+
+        .form-intro p {
+            font-size: clamp(1.1rem, 4vw, 1.25rem);
+            font-weight: 600;
+            color: var(--rifle-green);
+            flex: 1;
+        }
+
+        .score-requirement {
+            background: var(--barracks-blue);
+            color: white;
+            padding: 8px 28px;
+            border-radius: 60px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            font-size: 0.95rem;
+            border: 2px solid var(--stripe-gold);
+        }
+
+        /* ---------- FORM LAYOUT ---------- */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px 40px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+
+        .form-group label {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--rifle-green);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            letter-spacing: 0.3px;
+        }
+
+        .form-group label i {
+            color: var(--stripe-gold);
+            font-size: 1.2rem;
+            width: 24px;
+            text-align: center;
+        }
+
+        .required-star {
+            color: #b34a3c;
+            margin-left: 4px;
+            font-size: 1.2rem;
+        }
+
+        .form-control {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.05rem;
+            padding: 14px 20px;
+            border: 1.5px solid var(--border-light);
+            border-radius: 20px;
+            background: #fefefe;
+            transition: all 0.2s;
+            width: 100%;
+            color: #1e2b36;
+            font-weight: 500;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--stripe-gold);
+            box-shadow: 0 0 0 4px rgba(183, 140, 74, 0.1);
+            background: white;
+        }
+
+        .form-control::placeholder {
+            color: #a0b3bc;
+            font-weight: 400;
+            font-size: 0.98rem;
+        }
+
+        select.form-control {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%231a3e50' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 20px center;
+            background-size: 16px;
+            padding-right: 48px;
+        }
+
+        .score-hint {
+            font-size: 0.9rem;
+            color: var(--parade-grey);
+            margin-top: 4px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .score-hint i {
+            color: var(--stripe-gold);
+        }
+
+        .location-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 16px;
+            grid-column: span 2;
+        }
+
+        .special-considerations {
+            grid-column: span 2;
+        }
+
+        .additional-info {
+            grid-column: span 2;
+        }
+
+        /* ---------- FORM SUBMISSION ---------- */
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 28px;
+            margin-top: 48px;
+            padding-top: 32px;
+            border-top: 2px dashed var(--border-light);
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            padding: 16px 44px;
+            border: none;
+            background: var(--barracks-blue);
+            color: white;
+            border-radius: 60px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 6px 0 #0e2835;
+            transition: 0.1s ease;
+            cursor: pointer;
+            text-decoration: none;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .btn i {
+            font-size: 1.2rem;
+        }
+
+        .btn:hover {
+            background: #134853;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 0 #0e2835;
+        }
+
+        .btn-reset {
+            background: var(--parade-grey);
+            box-shadow: 0 6px 0 #3a434a;
+        }
+
+        .btn-reset:hover {
+            background: #5d6871;
+        }
+
+        .btn-submit {
+            background: var(--stripe-gold);
+            box-shadow: 0 6px 0 #7e6032;
+            color: #0e1c24;
+        }
+
+        .form-footnote {
+            margin-top: 24px;
+            font-style: italic;
+            color: var(--parade-grey);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            justify-content: flex-end;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 30px;
+            color: var(--barracks-blue);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .back-link i {
+            margin-right: 8px;
+        }
+
+        /* Footer */
+        footer {
+            background: #0f1f28;
+            color: #e0ecf2;
+            padding: 64px 0 32px;
+            border-top: 6px solid var(--barracks-blue);
+            width: 100%;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-bottom: 48px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .footer-school h3 {
+            font-family: 'Playfair Display', serif;
+            color: white;
+            font-size: clamp(1.5rem, 5vw, 1.8rem);
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .zambia-badge {
+            display: inline-block;
+            background: #198a5e;
+            color: white;
+            padding: 4px 16px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-left: 10px;
+            text-transform: uppercase;
+        }
+
+        .footer-contact h5 {
+            font-family: 'Playfair Display', serif;
+            color: white;
+            font-size: clamp(1.2rem, 4.5vw, 1.3rem);
+            font-weight: 700;
+            margin-bottom: 24px;
+            border-bottom: 2px solid var(--stripe-gold);
+            display: inline-block;
+            padding-bottom: 8px;
+        }
+
+        .footer-contact ul {
+            list-style: none;
+        }
+
+        .footer-contact li {
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .footer-contact i {
+            width: 24px;
+            color: var(--stripe-gold);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 32px;
+            border-top: 1px solid #2a4450;
+            color: #a1b7c2;
+        }
+
+        @media (max-width: 992px) {
+            .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                gap: 20px;
+                padding: 30px 0 20px;
+            }
+            .nav-links.mobile-open {
+                display: flex;
+            }
+            .menu-toggle {
+                display: block;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+            .logo-shield-left,
+            .logo-shield-right {
+                width: 52px;
+                height: 52px;
+            }
+            .school-name h1 {
+                font-size: 1.2rem;
+            }
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            .form-group.full-width,
+            .location-group,
+            .special-considerations,
+            .additional-info {
+                grid-column: span 1;
+            }
+            .location-group {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            .form-actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            .track-indicator {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .track-indicator .track-dates {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container navbar">
+            <div class="logo-area">
+                <div class="logo-dual">
+                    <div class="logo-shield-left">
+                        <img src="emblem-left.png" alt="Arakan left emblem" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-shield\' style=\'font-size:2rem;color:#1a3e50;\'></i>'">
+                    </div>
+                    <div class="logo-shield-right">
+                        <img src="emblem-right.png" alt="Arakan right emblem" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-shield-haltered\' style=\'font-size:2rem;color:#b78c4a;\'></i>'">
+                    </div>
+                </div>
+                <div class="school-name">
+                    <h1>ARAKAN BOYS</h1>
+                    <span>SECONDARY SCHOOL · LUSAKA</span>
+                </div>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="portal.html">Portal</a>
+                <a href="news.html">News</a>
+                <a href="contact.html">Contact</a>
+                <a href="gallary.html">Gallary</a>
+            </div>
+            <div class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- BACK LINK -->
+        <div class="container">
+            <a href="enroll.html" class="back-link"><i class="fas fa-arrow-left"></i> BACK TO ENROLLMENT OPTIONS</a>
+        </div>
+
+        <!-- ENROLLMENT HEADER -->
+        <div class="container enrollment-header">
+            <h2>
+                <i class="fas fa-child"></i> 
+                JUNIOR SECONDARY
+            </h2>
+            <span class="enrollment-badge"><i class="fas fa-shield"></i> FORM 1–2 · 2026</span>
+        </div>
+
+        <!-- TRACK INDICATOR -->
+        <div class="container">
+            <div class="track-indicator">
+                <i class="fas fa-school"></i>
+                <span class="track-name">Junior Secondary Enrollment · Form 1 & Form 2</span>
+                <span class="track-dates"><i class="far fa-calendar-alt"></i> Intake: January 2026</span>
+            </div>
+        </div>
+
+        <!-- ENROLLMENT FORM -->
+        <div class="container">
+            <div class="form-card">
+                <!-- FORM INTRO WITH SCORE REQUIREMENT -->
+                <div class="form-intro">
+                    <i class="fas fa-scroll"></i>
+                    <p>Applicants must present a genuine Grade 7 Composite Score. Only scores <strong>above 650 / 900</strong> are considered for Junior Secondary.</p>
+                    <span class="score-requirement"><i class="fas fa-arrow-up"></i> MINIMUM 651</span>
+                </div>
+
+                <!-- FORM -->
+                <form id="enrollmentForm" action="submission.html" method="POST" onsubmit="return saveFormData(event)">
+                    <input type="hidden" name="track" value="Junior Secondary (Form 1-2)">
+                    
+                    <div class="form-grid">
+                        <!-- 1. FULL NAME -->
+                        <div class="form-group full-width">
+                            <label><i class="fas fa-user-graduate"></i> Full Name <span class="required-star">*</span></label>
+                            <input type="text" class="form-control" name="fullName" placeholder="Surname, Given names" required>
+                        </div>
+
+                        <!-- 2. CLASS THEY WISH TO ENROLL (FORM 1 OR 2) -->
+                        <div class="form-group">
+                            <label><i class="fas fa-layer-group"></i> Desired Form <span class="required-star">*</span></label>
+                            <select class="form-control" name="desiredForm" required>
+                                <option value="" disabled selected>— Select form —</option>
+                                <option value="Form 1">Form 1</option>
+                                <option value="Form 2">Form 2</option>
+                            </select>
+                        </div>
+
+                        <!-- 3. GRADE 7 COMPOSITE SCORE (0–900, MIN 650) -->
+                        <div class="form-group">
+                            <label><i class="fas fa-trophy"></i> Grade 7 Composite <span class="required-star">*</span></label>
+                            <input type="number" class="form-control" name="compositeScore" placeholder="e.g. 750" min="0" max="900" step="1" required>
+                            <span class="score-hint"><i class="fas fa-info-circle"></i> Maximum 900 · Junior Secondary minimum 650</span>
+                        </div>
+
+                        <!-- 4. LOCATION (CURRENT RESIDENCE) -->
+                        <div class="form-group full-width">
+                            <label><i class="fas fa-map-pin"></i> Current Location / Residence</label>
+                            <input type="text" class="form-control" name="location" placeholder="Compound, street, or area">
+                        </div>
+
+                        <!-- 5. NATIONALITY -->
+                        <div class="form-group">
+                            <label><i class="fas fa-flag"></i> Nationality <span class="required-star">*</span></label>
+                            <input type="text" class="form-control" name="nationality" placeholder="e.g. Zambian" required>
+                        </div>
+
+                        <!-- 6. FORMER SCHOOL NAME -->
+                        <div class="form-group">
+                            <label><i class="fas fa-school"></i> Former Primary School</label>
+                            <input type="text" class="form-control" name="formerSchool" placeholder="Name of primary school attended">
+                        </div>
+
+                        <!-- 7. TOWN, DISTRICT AND PROVINCE — THREE FIELDS SIDE BY SIDE -->
+                        <div class="location-group">
+                            <div class="form-group">
+                                <label><i class="fas fa-city"></i> Town</label>
+                                <input type="text" class="form-control" name="town" placeholder="Town / City">
+                            </div>
+                            <div class="form-group">
+                                <label><i class="fas fa-map"></i> District</label>
+                                <input type="text" class="form-control" name="district" placeholder="District">
+                            </div>
+                            <div class="form-group">
+                                <label><i class="fas fa-globe"></i> Province</label>
+                                <select class="form-control" name="province">
+                                    <option value="" disabled selected>— Select province —</option>
+                                    <option>Central</option>
+                                    <option>Copperbelt</option>
+                                    <option>Eastern</option>
+                                    <option>Luapula</option>
+                                    <option>Lusaka</option>
+                                    <option>Muchinga</option>
+                                    <option>Northern</option>
+                                    <option>North-Western</option>
+                                    <option>Southern</option>
+                                    <option>Western</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- 8. DATE OF BIRTH (NEW FOR JUNIOR) -->
+                        <div class="form-group">
+                            <label><i class="fas fa-cake-candles"></i> Date of Birth <span class="required-star">*</span></label>
+                            <input type="date" class="form-control" name="dob" required>
+                        </div>
+
+                        <!-- 9. AGE (AUTO-CALCULATED) -->
+                        <div class="form-group">
+                            <label><i class="fas fa-calendar"></i> Age</label>
+                            <input type="text" class="form-control" name="age" placeholder="Will be calculated" readonly>
+                        </div>
+
+                        <!-- 10. SPECIAL CONSIDERATIONS -->
+                        <div class="form-group special-considerations">
+                            <label><i class="fas fa-hand-holding-heart"></i> Special Considerations</label>
+                            <textarea class="form-control" name="special" rows="3" placeholder="Medical conditions, boarding requirements, bursary requests, or any exceptional circumstances (optional)"></textarea>
+                        </div>
+
+                        <!-- 11. ADDITIONAL INFORMATION -->
+                        <div class="form-group additional-info">
+                            <label><i class="fas fa-file-lines"></i> Additional Information</label>
+                            <textarea class="form-control" name="additional" rows="3" placeholder="Any other relevant information you wish to include (optional)"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- FORM ACTIONS -->
+                    <div class="form-actions">
+                        <button type="reset" class="btn btn-reset"><i class="fas fa-undo-alt"></i> CLEAR FORM</button>
+                        <button type="submit" class="btn btn-submit"><i class="fas fa-check-circle"></i> SUBMIT APPLICATION</button>
+                    </div>
+                    <div class="form-footnote">
+                        <i class="fas fa-shield-haltered"></i> All information is treated with strict confidence. Submission implies adherence to school regulations.
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-school">
+                <h3>Arakan Boys<br>Secondary School</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Arakan Barracks, Lusaka, Zambia <span class="zambia-badge">ZAMBIA</span></p>
+                <p style="margin-top: 20px;"><i class="fas fa-shield-alt"></i> Military school · Est. 2014</p>
+                <p style="margin-top: 24px; font-style: italic; color: #c2d4dc;">Discipline and Hard work yields success</p>
+            </div>
+            
+            <div class="footer-contact">
+                <h5><i class="fas fa-address-card"></i> Contact & Connect</h5>
+                <ul>
+                    <li><i class="fas fa-phone-alt"></i> +260 97X XXX XXX</li>
+                    <li><i class="fas fa-envelope"></i> admin@arakanboys.edu.zm</li>
+                    <li><i class="fas fa-location-dot"></i> Arakan Barracks, Lusaka</li>
+                    <li><i class="fas fa-globe"></i> <a href="contact.html">Official contact page</a></li>
+                    <li><i class="fas fa-clock"></i> Mon–Fri: 07:30 – 16:00</li>
+                </ul>
+            </div>
+        </div>
+        <div class="container copyright">
+            <p>© 2026 Arakan Boys Secondary School. Computer Science Club Project</p>
+            <p style="margin-top: 8px; font-size: 0.9rem;">Discipline and Hard work yields success</p>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            // MOBILE MENU TOGGLE
+            const toggle = document.getElementById('menuToggle');
+            const nav = document.getElementById('navLinks');
+            
+            if (toggle && nav) {
+                toggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    nav.classList.toggle('mobile-open');
+                });
+                
+                document.addEventListener('click', function(e) {
+                    if (!nav.contains(e.target) && !toggle.contains(e.target)) {
+                        nav.classList.remove('mobile-open');
+                    }
+                });
+            }
+            
+            // ACTIVE NAV HIGHLIGHT
+            const currentPage = window.location.pathname.split('/').pop() || 'enroll-junior.html';
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks.forEach(link => {
+                const linkPage = link.getAttribute('href');
+                if (linkPage === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+
+            // AGE CALCULATION FROM DOB
+            const dobInput = document.querySelector('input[name="dob"]');
+            const ageInput = document.querySelector('input[name="age"]');
+            
+            if (dobInput && ageInput) {
+                dobInput.addEventListener('change', function() {
+                    if (this.value) {
+                        const birthDate = new Date(this.value);
+                        const today = new Date();
+                        let age = today.getFullYear() - birthDate.getFullYear();
+                        const monthDiff = today.getMonth() - birthDate.getMonth();
+                        
+                        if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+                            age--;
+                        }
+                        
+                        ageInput.value = age + ' years';
+                        
+                        // Warn if age is outside typical range for junior secondary
+                        if (age < 12 || age > 16) {
+                            alert('Note: Typical age for Junior Secondary (Form 1-2) is 13-15 years. Please verify the date of birth.');
+                        }
+                    }
+                });
+            }
+
+            // COMPOSITE SCORE VALIDATION
+            const scoreInput = document.querySelector('input[name="compositeScore"]');
+            if(scoreInput) {
+                scoreInput.addEventListener('change', function() {
+                    let val = parseInt(this.value);
+                    if (val < 650 && val > 0) {
+                        alert('Junior Secondary requires a minimum composite score of 650. Please review your entry.');
+                    }
+                });
+            }
+        })();
+
+        // SAVE FORM DATA TO SESSION STORAGE
+        function saveFormData(event) {
+            event.preventDefault();
+            
+            const form = document.getElementById('enrollmentForm');
+            const formData = new FormData(form);
+            const data = {};
+            
+            for (let [key, value] of formData.entries()) {
+                data[key] = value;
+            }
+            
+            // Add timestamp
+            data.submissionDate = new Date().toISOString();
+            
+            // Save to sessionStorage
+            sessionStorage.setItem('arakanEnrollment', JSON.stringify(data));
+            
+            // Redirect to submission page
+            window.location.href = 'submission.html';
+            
+            return false;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Enrollment · Arakan Boys Secondary School</title>
+    <!-- Playfair Display — primary font, divine & military precision -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Inter only as geometric fallback -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ---------- GLOBAL — PLAYFAIR DOMINANCE, SACRED PRECISION ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :root {
+            --barracks-blue: #1a3e50;
+            --parade-grey: #4f5a62;
+            --stripe-gold: #b78c4a;
+            --rifle-green: #1e2f3a;
+            --pure-white: #f8fbfc;
+            --border-light: rgba(26, 62, 80, 0.15);
+            --divine-cream: #fcf8f0;
+            --enrollment-velvet: #1e2f3a;
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Playfair Display', serif;
+            background-color: var(--pure-white);
+            color: #1e2b36;
+            line-height: 1.5;
+            font-weight: 400;
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ---------- HEADER — STICKY, DUAL EMBLEM, FULLY RESPONSIVE ---------- */
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(255,255,255,0.97);
+            backdrop-filter: blur(8px);
+            border-bottom: 3px solid var(--barracks-blue);
+            z-index: 100;
+            width: 100%;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            width: 100%;
+            flex-wrap: wrap;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex: 1 1 auto;
+            min-width: 0;
+        }
+
+        .logo-dual {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .logo-shield-left,
+        .logo-shield-right {
+            width: 64px;
+            height: 64px;
+            border: 2px solid var(--barracks-blue);
+            background: #e8f0f3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .logo-shield-right {
+            border: 2px solid var(--stripe-gold);
+        }
+
+        .logo-shield-left img,
+        .logo-shield-right img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .school-name {
+            flex-grow: 1;
+            min-width: 0;
+        }
+
+        .school-name h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: var(--rifle-green);
+            line-height: 1.1;
+            letter-spacing: -0.5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .school-name span {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--parade-grey);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-top: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--rifle-green);
+            padding-bottom: 6px;
+            border-bottom: 2px solid transparent;
+            transition: 0.2s;
+            font-size: 1.05rem;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            border-bottom-color: var(--stripe-gold);
+            color: var(--barracks-blue);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            color: var(--rifle-green);
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        /* ---------- ENROLLMENT PAGE — WITH TRACK SELECTION BUTTONS ---------- */
+        .enrollment-header {
+            padding: 40px 0 20px;
+            border-bottom: 2px solid var(--stripe-gold);
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .enrollment-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 8vw, 3rem);
+            font-weight: 900;
+            color: var(--rifle-green);
+            letter-spacing: -1px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .enrollment-header h2 i {
+            color: var(--barracks-blue);
+            font-size: clamp(2rem, 7vw, 2.8rem);
+        }
+
+        .enrollment-badge {
+            background: var(--rifle-green);
+            color: white;
+            padding: 8px 24px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            letter-spacing: 2px;
+            border: 2px solid var(--stripe-gold);
+            white-space: nowrap;
+        }
+
+        /* ----- TRACK SELECTION BUTTONS (NEW) ----- */
+        .track-selection {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            margin: 40px 0 32px;
+            flex-wrap: wrap;
+        }
+
+        .track-btn {
+            flex: 1;
+            min-width: 260px;
+            max-width: 400px;
+            padding: 32px 24px;
+            border-radius: 32px;
+            text-decoration: none;
+            color: inherit;
+            background: white;
+            border: 3px solid var(--border-light);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.02);
+        }
+
+        .track-btn:hover {
+            transform: translateY(-6px);
+            border-color: var(--stripe-gold);
+            box-shadow: 0 20px 30px rgba(0,0,0,0.06);
+        }
+
+        .track-btn.junior:hover {
+            border-color: var(--barracks-blue);
+        }
+
+        .track-btn.senior:hover {
+            border-color: var(--stripe-gold);
+        }
+
+        .track-icon {
+            font-size: 3.5rem;
+            color: var(--barracks-blue);
+            margin-bottom: 16px;
+        }
+
+        .track-btn.senior .track-icon {
+            color: var(--stripe-gold);
+        }
+
+        .track-btn h3 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--rifle-green);
+            margin-bottom: 8px;
+        }
+
+        .track-level {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--parade-grey);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .track-desc {
+            color: var(--parade-grey);
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .track-requirements {
+            background: #f0f4f7;
+            padding: 16px;
+            border-radius: 24px;
+            width: 100%;
+            font-size: 0.95rem;
+        }
+
+        .track-requirements i {
+            color: var(--stripe-gold);
+            width: 24px;
+        }
+
+        .track-requirements li {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .junior-btn {
+            border-left: 8px solid var(--barracks-blue);
+        }
+
+        .senior-btn {
+            border-right: 8px solid var(--stripe-gold);
+        }
+
+        /* Info panel */
+        .info-panel {
+            background: var(--divine-cream);
+            border-radius: 40px;
+            padding: 32px;
+            margin: 40px 0 60px;
+            border: 2px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .info-panel i {
+            font-size: 2.5rem;
+            color: var(--stripe-gold);
+        }
+
+        .info-panel p {
+            font-size: 1.1rem;
+            flex: 1;
+        }
+
+        .btn-contact {
+            background: var(--barracks-blue);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 60px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            white-space: nowrap;
+        }
+
+        /* Footer */
+        footer {
+            background: #0f1f28;
+            color: #e0ecf2;
+            padding: 64px 0 32px;
+            border-top: 6px solid var(--barracks-blue);
+            width: 100%;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-bottom: 48px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .footer-school h3 {
+            font-family: 'Playfair Display', serif;
+            color: white;
+            font-size: clamp(1.5rem, 5vw, 1.8rem);
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .footer-school p {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .zambia-badge {
+            display: inline-block;
+            background: #198a5e;
+            color: white;
+            padding: 4px 16px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-left: 10px;
+            text-transform: uppercase;
+        }
+
+        .footer-contact h5 {
+            font-family: 'Playfair Display', serif;
+            color: white;
+            font-size: clamp(1.2rem, 4.5vw, 1.3rem);
+            font-weight: 700;
+            margin-bottom: 24px;
+            border-bottom: 2px solid var(--stripe-gold);
+            display: inline-block;
+            padding-bottom: 8px;
+        }
+
+        .footer-contact ul {
+            list-style: none;
+        }
+
+        .footer-contact li {
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .footer-contact i {
+            width: 24px;
+            color: var(--stripe-gold);
+        }
+
+        .footer-contact a {
+            color: #cbdbe3;
+            text-decoration: none;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 32px;
+            border-top: 1px solid #2a4450;
+            color: #a1b7c2;
+        }
+
+        @media (max-width: 992px) {
+            .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                gap: 20px;
+                padding: 30px 0 20px;
+            }
+            .nav-links.mobile-open {
+                display: flex;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .track-selection {
+                flex-direction: column;
+                align-items: center;
+            }
+            .track-btn {
+                width: 100%;
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+            .logo-shield-left,
+            .logo-shield-right {
+                width: 52px;
+                height: 52px;
+            }
+            .school-name h1 {
+                font-size: 1.2rem;
+            }
+            .info-panel {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container navbar">
+            <div class="logo-area">
+                <div class="logo-dual">
+                    <div class="logo-shield-left">
+                        <img src="emblem-left.png" alt="Arakan left emblem" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-shield\' style=\'font-size:2rem;color:#1a3e50;\'></i>'">
+                    </div>
+                    <div class="logo-shield-right">
+                        <img src="emblem-right.png" alt="Arakan right emblem" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-shield-haltered\' style=\'font-size:2rem;color:#b78c4a;\'></i>'">
+                    </div>
+                </div>
+                <div class="school-name">
+                    <h1>ARAKAN BOYS</h1>
+                    <span>SECONDARY SCHOOL · LUSAKA</span>
+                </div>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="portal.html">Portal</a>
+                <a href="news.html">News</a>
+                <a href="contact.html">Contact</a>
+                <a href="gallary.html">Gallary</a>
+            </div>
+            <div class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- ENROLLMENT HEADER -->
+        <div class="container enrollment-header">
+            <h2>
+                <i class="fas fa-pen-alt"></i> 
+                ENROLLMENT
+            </h2>
+            <span class="enrollment-badge"><i class="fas fa-shield"></i> 2026 INTAKE</span>
+        </div>
+
+        <div class="container">
+            <!-- TRACK SELECTION BUTTONS (NEW) -->
+            <div class="track-selection">
+                <!-- JUNIOR SECONDARY BUTTON (FORM 1-2) -->
+                <a href="enroll-junior.html" class="track-btn junior junior-btn">
+                    <div class="track-icon"><i class="fas fa-child"></i></div>
+                    <h3>JUNIOR SECONDARY</h3>
+                    <div class="track-level">FORM 1 · FORM 2</div>
+                    <p class="track-desc">For students entering Grade 8 and 9</p>
+                    <div class="track-requirements">
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Grade 7 Composite: 650–900</li>
+                            <li><i class="fas fa-check-circle"></i> Age: 13–15 years</li>
+                            <li><i class="fas fa-check-circle"></i> Primary school leaving certificate</li>
+                        </ul>
+                    </div>
+                </a>
+
+                <!-- SENIOR SECONDARY BUTTON (GRADE 10-12) -->
+                <a href="enroll-senior.html" class="track-btn senior senior-btn">
+                    <div class="track-icon"><i class="fas fa-user-graduate"></i></div>
+                    <h3>SENIOR SECONDARY</h3>
+                    <div class="track-level">GRADE 10 · 11 · 12</div>
+                    <p class="track-desc">For students entering senior cycle</p>
+                    <div class="track-requirements">
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Grade 9 Composite: 750–900</li>
+                            <li><i class="fas fa-check-circle"></i> Age: 16–19 years</li>
+                            <li><i class="fas fa-check-circle"></i> Junior secondary leaving certificate</li>
+                        </ul>
+                    </div>
+                </a>
+            </div>
+
+            <!-- INFORMATION PANEL -->
+            <div class="info-panel">
+                <i class="fas fa-shield-haltered"></i>
+                <p><strong>Choose your path:</strong> Select Junior Secondary (Form 1-2) or Senior Secondary (Grade 10-12). Each track has specific requirements. Boarding available for both.</p>
+                <a href="contact.html" class="btn-contact"><i class="fas fa-question-circle"></i> CONTACT ADMISSIONS</a>
+            </div>
+
+            <!-- BACK TO HOME -->
+            <div style="margin-bottom: 60px; text-align: center;">
+                <a href="index.html" style="display: inline-block; background: var(--barracks-blue); color: white; padding: 14px 32px; border-radius: 60px; text-decoration: none; font-weight: 700; letter-spacing: 1.5px; border: 2px solid var(--stripe-gold);"><i class="fas fa-arrow-left"></i> RETURN TO HOMEPAGE</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-school">
+                <h3>Arakan Boys<br>Secondary School</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Arakan Barracks, Lusaka, Zambia <span class="zambia-badge">ZAMBIA</span></p>
+                <p style="margin-top: 20px;"><i class="fas fa-shield-alt"></i> Military school · Est. 2014</p>
+                <p style="margin-top: 24px; font-style: italic; color: #c2d4dc;">Discipline and Hard work yields success</p>
+            </div>
+            
+            <div class="footer-contact">
+                <h5><i class="fas fa-address-card"></i> Contact & Connect</h5>
+                <ul>
+                    <li><i class="fas fa-phone-alt"></i> +260 97X XXX XXX</li>
+                    <li><i class="fas fa-envelope"></i> admin@arakanboys.edu.zm</li>
+                    <li><i class="fas fa-location-dot"></i> Arakan Barracks, Lusaka</li>
+                    <li><i class="fas fa-globe"></i> <a href="contact.html">Official contact page</a></li>
+                    <li><i class="fas fa-clock"></i> Mon–Fri: 07:30 – 16:00</li>
+                </ul>
+            </div>
+        </div>
+        <div class="container copyright">
+            <p>© 2026 Arakan Boys Secondary School. Computer Science Club Project</p>
+            <p style="margin-top: 8px; font-size: 0.9rem;">Discipline and Hard work yields success</p>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            // MOBILE MENU TOGGLE
+            const toggle = document.getElementById('menuToggle');
+            const nav = document.getElementById('navLinks');
+            
+            if (toggle && nav) {
+                toggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    nav.classList.toggle('mobile-open');
+                });
+                
+                document.addEventListener('click', function(e) {
+                    if (!nav.contains(e.target) && !toggle.contains(e.target)) {
+                        nav.classList.remove('mobile-open');
+                    }
+                });
+            }
+            
+            // ACTIVE NAV HIGHLIGHT
+            const currentPage = window.location.pathname.split('/').pop() || 'enroll.html';
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks.forEach(link => {
+                const linkPage = link.getAttribute('href');
+                if (linkPage === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+        })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Arakan Boys Secondary School · Lusaka</title>
+    <!-- Playfair Display — primary font throughout, exactly as instructed -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Inter only as geometric fallback/accents — but main text stays Playfair -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ---------- GLOBAL — PLAYFAIR DOMINANCE, MILITARY PRECISION, FACTS ONLY ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :root {
+            --barracks-blue: #1a3e50;        /* uniform shirt — command blue */
+            --parade-grey: #4f5a62;           /* uniform trousers, grey */
+            --stripe-gold: #b78c4a;           /* motto accent — hard work yields success */
+            --rifle-green: #1e2f3a;           /* deep military anchor */
+            --bone-white: #b0b0b0;
+            --pure-white: #9a9a9a9a;
+            --shadow-sm: 0 8px 24px rgba(0,0,0,0.05);
+            --shadow-hover: 0 16px 32px rgba(0,0,0,0.1);
+            --border-light: rgba(26, 62, 80, 0.15);
+            --pure-white: #b0b0b0;     /* medium grey */
+            --bone-white: #9a9a9a;     /* darker grey */
+        }
+
+        body {
+            font-family: 'Playfair Display', serif;  /* Playfair — main font everywhere */
+            background-color: var(--pure-white);
+            color: #1e2b36;
+            line-height: 1.5;
+            font-weight: 400;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ---------- HEADER — STICKY, CRISP, NOW WITH TWO LOGO PLACEHOLDERS ---------- */
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(255,255,255,0.96);
+            backdrop-filter: blur(8px);
+            border-bottom: 3px solid var(--barracks-blue);
+            z-index: 100;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            width: 100%;
+        }
+
+        /* ----- DUAL EMBLEM LAYOUT: LEFT SHIELD & RIGHT SHIELD (for two images) ----- */
+        .logo-dual {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        /* EXACT SQUARE SHIELDS — left & right emblem placeholders */
+        .logo-shield-left,
+        .logo-shield-right {
+            width: 64px;
+            height: 64px;
+            border: 2px solid var(--barracks-blue);
+            background: grey;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            flex-shrink: 0;
+            transition: all 0.1s ease;
+        }
+
+        .logo-shield-left img,
+        .logo-shield-right img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* right shield slightly different border — subtle distinction */
+        .logo-shield-right {
+            border: 2px solid var(--stripe-gold);
+        }
+
+        .school-name {
+            flex-grow: 1;
+        }
+
+        .school-name h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: var(--rifle-green);
+            line-height: 1.1;
+            letter-spacing: -0.5px;
+        }
+
+        .school-name span {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--parade-grey);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-top: 4px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--rifle-green);
+            padding-bottom: 6px;
+            border-bottom: 2px solid transparent;
+            transition: 0.2s;
+            font-size: 1.05rem;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            border-bottom-color: var(--stripe-gold);
+            color: var(--barracks-blue);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            color: var(--rifle-green);
+            cursor: pointer;
+        }
+
+        /* ---------- HERO — WITH THREE BUTTONS (ENROLL, NEWS, PORTAL) ---------- */
+        .hero {
+            background: linear-gradient(105deg, #f9fcff, white);
+            padding: 48px 0 32px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .hero h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.4rem, 6vw, 3.4rem);
+            font-weight: 900;
+            color: var(--rifle-green);
+            line-height: 1.1;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        /* SPECIAL FONT TREATMENT — MOTTO */
+        .motto {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            font-style: italic;
+            color: var(--barracks-blue);
+            border-left: 6px solid var(--stripe-gold);
+            padding-left: 24px;
+            margin: 28px 0 20px;
+            line-height: 1.3;
+            letter-spacing: 0.3px;
+        }
+
+        /* ----- ACTION BUTTONS: ENROLL, NEWS, PORTAL ----- */
+        .action-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 30px 0 16px;
+        }
+
+        .btn {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            padding: 14px 32px;
+            border: none;
+            background: var(--barracks-blue);
+            color: white;
+            border-radius: 48px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 6px 0 #0e2835;
+            transition: 0.1s ease;
+            cursor: pointer;
+            text-decoration: none;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .btn i {
+            font-size: 1.2rem;
+        }
+
+        .btn:hover {
+            background: #134853;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 0 #0e2835;
+        }
+
+        .btn-news {
+            background: var(--parade-grey);
+            box-shadow: 0 6px 0 #3a434a;
+        }
+
+        .btn-portal {
+            background: var(--stripe-gold);
+            box-shadow: 0 6px 0 #7e6032;
+            color: #0e1c24;
+        }
+
+        .location-badge {
+            display: inline-block;
+            background: var(--rifle-green);
+            color: white;
+            padding: 6px 20px;
+            border-radius: 50px;
+            font-family: 'Playfair Display', serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .headmaster-line {
+            background: #f0f4f7;
+            padding: 18px 26px;
+            border-radius: 12px;
+            border-left: 4px solid var(--barracks-blue);
+            font-family: 'Playfair Display', serif;
+            font-weight: 500;
+            margin-top: 24px;
+            font-size: 1.1rem;
+        }
+
+        /* hero symbol — military, abstract */
+        .barracks-symbol {
+            background: white;
+            border: 8px solid var(--barracks-blue);
+            width: 100%;
+            max-width: 300px;
+            height: 300px;
+            margin: 0 auto;
+            border-radius: 0 40px 0 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 20px 20px 0 rgba(26,62,80,0.06);
+        }
+
+        .barracks-symbol i {
+            font-size: 5rem;
+            color: var(--parade-grey);
+        }
+
+        .barracks-symbol span {
+            background: var(--rifle-green);
+            color: white;
+            padding: 8px 24px;
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            letter-spacing: 4px;
+            margin-top: 16px;
+            font-size: 0.9rem;
+        }
+
+        /* ---------- STATS — 2,000+ BOYS, 2014, REAL ---------- */
+        .stats-row {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            background: white;
+            border: 1px solid var(--border-light);
+            border-radius: 80px;
+            padding: 28px 20px;
+            margin: 40px 0 60px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.3rem;
+            font-weight: 800;
+            color: var(--barracks-blue);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            color: var(--parade-grey);
+            letter-spacing: 2px;
+            font-weight: 600;
+            margin-top: 6px;
+        }
+
+        /* ---------- HERITAGE — DISJOINTED 2014, CLEAN ---------- */
+        .heritage-block {
+            background: var(--rifle-green);
+            color: white;
+            padding: 52px 44px;
+            border-radius: 32px;
+            margin-bottom: 60px;
+        }
+
+        .heritage-block h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .heritage-block p {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 400;
+            opacity: 0.96;
+            max-width: 800px;
+            line-height: 1.4;
+        }
+
+        /* ---------- HEADMASTER — LT. COL. KANSE, REAL, PLAYFAIR ALL ---------- */
+        .command-card {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            gap: 44px;
+            background: white;
+            border-radius: 32px;
+            padding: 44px;
+            margin-bottom: 60px;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .command-img {
+            background: linear-gradient(145deg, #dee9ef, #c5d5dd);
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 260px;
+            border: 3px solid white;
+            outline: 3px solid var(--stripe-gold);
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--rifle-green);
+        }
+
+        .command-quote h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--rifle-green);
+            line-height: 1.2;
+        }
+
+        .rank {
+            font-family: 'Playfair Display', serif;
+            color: var(--barracks-blue);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+        }
+
+        .command-message {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            font-style: italic;
+            border-bottom: 2px solid var(--stripe-gold);
+            padding-bottom: 22px;
+            margin: 22px 0;
+            line-height: 1.4;
+            color: #1e3a4a;
+        }
+
+        /* ---------- COUNTLESS ACTIVITIES — NO LIST, PLAYFAIR ELEGANCE ---------- */
+        .countless {
+            background: #f2f6f9;
+            padding: 60px 40px;
+            border-radius: 32px;
+            margin-bottom: 60px;
+            text-align: center;
+            border: 1px solid var(--border-light);
+        }
+
+        .countless h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.3rem;
+            font-weight: 800;
+            color: var(--rifle-green);
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .countless p {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 400;
+            color: #2a404e;
+            max-width: 700px;
+            margin: 0 auto;
+            font-style: italic;
+        }
+
+        /* ---------- PARTNERS — REAL: TEXILA, FNB, SUBCIZ ---------- */
+        .partners {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            background: white;
+            padding: 32px 40px;
+            border-radius: 80px;
+            border: 1px solid var(--barracks-blue);
+            margin-bottom: 60px;
+        }
+
+        .partner-item {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            color: var(--rifle-green);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.1rem;
+        }
+
+        /* ---------- FOOTER — REDESIGNED: ONLY CONTACT REMAINS, NO COMMAND/LEGACY ---------- */
+        footer {
+            background: #0f1f28;
+            color: #e0ecf2;
+            padding: 64px 0 32px;
+            border-top: 6px solid var(--barracks-blue);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1.5fr; /* only two sections: school info + contact details */
+            gap: 48px;
+            margin-bottom: 48px;
+            max-width: 800px; 
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .footer-school h3 {
+            font-family: 'Playfair Display', serif;
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .footer-school p {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .zambia-badge {
+            display: inline-block;
+            background: #198a5e;
+            color: white;
+            padding: 4px 16px;
+            border-radius: 40px;
+            font-family: 'Playfair Display', serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-left: 10px;
+            text-transform: uppercase;
+        }
+
+        /* Footer contact only — no command, no legacy */
+        .footer-contact {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .footer-contact h5 {
+            font-family: 'Playfair Display', serif;
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            border-bottom: 2px solid var(--stripe-gold);
+            display: inline-block;
+            padding-bottom: 8px;
+        }
+
+        .footer-contact ul {
+            list-style: none;
+        }
+
+        .footer-contact li {
+            margin-bottom: 18px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.05rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .footer-contact i {
+            width: 24px;
+            color: var(--stripe-gold);
+            font-size: 1.2rem;
+        }
+
+        .footer-contact a {
+            color: #cbdbe3;
+            text-decoration: none;
+            font-weight: 400;
+            border-bottom: 1px dotted transparent;
+        }
+
+        .footer-contact a:hover {
+            color: var(--stripe-gold);
+            border-bottom: 1px dotted var(--stripe-gold);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 32px;
+            border-top: 1px solid #2a4450;
+            font-family: 'Playfair Display', serif;
+            color: #a1b7c2;
+            font-size: 0.95rem;
+        }
+
+        /* ---------- RESPONSIVE — PERFECT FOR ALL DEVICES ---------- */
+        @media (max-width: 992px) {
+            .hero-grid,
+            .command-card,
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .nav-links.mobile-open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                padding: 30px;
+                box-shadow: 0 20px 20px rgba(0,0,0,0.05);
+                border-top: 1px solid var(--border-light);
+            }
+
+            .footer-grid {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+            
+            .school-name h1 {
+                font-size: 1.3rem;
+            }
+            
+            .stats-row {
+                border-radius: 40px;
+                padding: 24px 16px;
+                gap: 20px;
+            }
+            
+            .heritage-block,
+            .command-card,
+            .countless {
+                padding: 36px 28px;
+            }
+            
+            .heritage-block h3 {
+                font-size: 1.9rem;
+            }
+
+            .logo-shield-left,
+            .logo-shield-right {
+                width: 52px;
+                height: 52px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .logo-shield-left,
+            .logo-shield-right {
+                width: 44px;
+                height: 44px;
+            }
+            
+            .school-name h1 {
+                font-size: 1.2rem;
+            }
+            
+            .school-name span {
+                font-size: 0.65rem;
+                letter-spacing: 2px;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .motto {
+                font-size: 1.3rem;
+            }
+            
+            .barracks-symbol {
+                max-width: 260px;
+                height: 260px;
+            }
+            
+            .stat-number {
+                font-size: 1.9rem;
+            }
+            
+            .partners {
+                flex-direction: column;
+                align-items: center;
+                gap: 16px;
+                border-radius: 40px;
+                padding: 28px 20px;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container navbar">
+            <!-- LOGO AREA NOW WITH LEFT SHIELD + RIGHT SHIELD — two distinct emblem placeholders -->
+            <div class="logo-area">
+                <div class="logo-dual">
+                    <!-- LEFT SHIELD: first emblem image (left) -->
+                    <div class="logo-shield-left">
+                        <img src="emblem-left.png" alt="Arakan left emblem" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-shield\' style=\'font-size:2.5rem;color:#1a3e50;\'></i>'">
+                    </div>
+                    <!-- RIGHT SHIELD: second emblem image (right) -->
+                    <div class="logo-shield-right">
+                        <img src="emblem-right.png" alt="Arakan right emblem" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-shield-haltered\' style=\'font-size:2.5rem;color:#b78c4a;\'></i>'">
+                    </div>
+                </div>
+                <div class="school-name">
+                    <h1>ARAKAN BOYS</h1>
+                    <span>SECONDARY SCHOOL · LUSAKA</span>
+                </div>
+            </div>
+            <!-- NAVIGATION: Command becomes PORTAL, Admissions becomes NEWS (as per dashboard) -->
+            <div class="nav-links" id="navLinks">
+                <a href="index.html" class="active">Home</a>
+                <a href="about.html">About</a>
+                <a href="portal.html">Portal</a>        <!-- was command.html → now portal -->
+                <a href="news.html">News</a>          <!-- was admissions.html → now news -->
+                <a href="contact.html">Contact</a>
+                
+                
+                 <a href="gallary.html">Gallary</a>
+            </div>
+            <div class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO — MOTTO, THEN THREE BUTTONS: ENROLL, NEWS, PORTAL -->
+        <section class="hero">
+            <div class="container hero-grid">
+                <div>
+                    <span class="location-badge"><i class="fas fa-fort-awesome"></i> ARAKAN BARRACKS · EST. 2014</span>
+                    <h2>Discipline & Hard work yields success</h2>
+                    <div class="motto">
+                        “Motto of the regiment”
+                    </div>
+                    
+                    <!-- THREE BUTTONS — EXACTLY AS REQUESTED: ENROLL, NEWS, SCHOOL PORTAL -->
+                    <div class="action-buttons">
+                        <a href="enroll.html" class="btn"><i class="fas fa-pen-alt"></i> Enroll</a>
+                        <a href="news.html" class="btn btn-news"><i class="fas fa-newspaper"></i> News</a>
+                        <a href="portal.html" class="btn btn-portal"><i class="fas fa-user-lock"></i> School Portal</a>
+                    </div>
+
+                    <div class="headmaster-line">
+                        <i class="fas fa-shield-haltered" style="color: var(--barracks-blue);"></i> 
+                        <strong>Lt. Col. Kanse</strong>, Headteacher.
+                    </div>
+                    <p style="margin-top: 24px; font-family: 'Playfair Display', serif; color: var(--parade-grey);">
+                        <i class="fas fa-map-pin"></i> Arakan Barracks, Lusaka, Zambia · Governmental Military Secondary School.
+                    </p>
+                </div>
+                <div>
+                    <div class="barracks-symbol">
+                        <i class="fas fa-shield-haltered"></i>
+                        <span>EST. 2014</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- STATS: 2,000+ BOYS — REAL -->
+        <div class="container stats-row">
+            <div class="stat-item">
+                <div class="stat-number">2,000+</div>
+                <div class="stat-label">ENROLLED BOYS</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">2014</div>
+                <div class="stat-label">INDEPENDENT</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">∞</div>
+                <div class="stat-label">ACHIEVEMENTS</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">1</div>
+                <div class="stat-label">MILITARY SCHOOL</div>
+            </div>
+        </div>
+
+        <!-- HERITAGE: DISJOINTED FROM ARAKAN HIGH, NO CIVIC -->
+        <div class="container">
+            <div class="heritage-block">
+                <h3>Formerly Arakan High School</h3>
+                <p>Disjointed from Arakan Girls · Independent boys' military school since 2014.<br>Located within Arakan Barracks, Lusaka.</p>
+            </div>
+        </div>
+
+        <!-- HEADMASTER: LT. COL. KANSE — REAL, RESPECTED -->
+        <div class="container command-card">
+<div class="command-img">
+    <img src="headmaster-kanse.png" alt="Lt. Col. Kanse, Headmaster" 
+         onerror="this.style.display='none'; this.parentElement.innerHTML='<span><i class=\'fas fa-user-shield\' style=\'font-size: 3rem; margin-right: 10px;\'></i> Lt. Col. Kanse</span>'"
+         style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;">
+</div>
+            <div class="command-quote">
+                <div class="rank"><i class="fas fa-star"></i> HEADTEACHER · LT. COL.</div>
+                <h4>Lieutenant Colonel Kanse</h4>
+                <div class="command-message">
+                    “Discipline and hard work yields success — this is not just our motto, it is the daily order at Arakan Barracks. We shape young men into leaders of Zambia.”
+                </div>
+                <p style="font-family: 'Playfair Display', serif; color: var(--parade-grey);">Serving headteacher, Arakan Boys Secondary School.</p>
+            </div>
+        </div>
+
+        <!-- COUNTLESS ACTIVITIES — SUMMARIZED, NO LIST -->
+        <div class="container">
+            <div class="countless">
+                <h3>Countless achievements · Infinite pride</h3>
+                <p>Debate · Sports · Cadet · Leadership · Community · Partnerships · and beyond.</p>
+                <p style="margin-top: 24px; font-size: 1.1rem;"><i class="fas fa-trophy" style="color: var(--stripe-gold);"></i> More than we can fit on one page.</p>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER — COMPLETELY RESTRUCTURED: ONLY CONTACT ELEMENTS REMAIN. NO COMMAND, NO LEGACY, NO MANAGEMENT LINKS. -->
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-school">
+                <h3>Arakan Boys<br>Secondary School</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Arakan Barracks, Lusaka, Zambia <span class="zambia-badge">ZAMBIA</span></p>
+                <p style="margin-top: 20px;"><i class="fas fa-shield-alt"></i> Military school · Est. 2014</p>
+                <p style="margin-top: 24px; font-style: italic; color: #c2d4dc;">Discipline and Hard work yields success</p>
+            </div>
+            
+            <!-- CONTACT ONLY — exactly as requested, removed all command/legacy/heritage links -->
+            <div class="footer-contact">
+                <h5><i class="fas fa-address-card"></i> Contact & Connect</h5>
+                <ul>
+                    <li><i class="fas fa-phone-alt"></i> +260 0760976399</li>
+                    <li><i class="fas fa-envelope"></i> arakanboys2025@gmail.com</li>
+                    <li><i class="fas fa-location-dot"></i> Arakan Barracks, Lusaka</li>
+                    <li><i class="fas fa-globe"></i> <a href="contact.html">Official contact page</a></li>
+                    <li><i class="fas fa-clock"></i> Mon–Fri: 07:30 – 16:00</li>
+                </ul>
+            </div>
+        </div>
+        <div class="container copyright">
+            <p>© 2026 Arakan Boys Secondary School. Computer Science Club Project</p>
+            <p style="margin-top: 8px; font-size: 0.9rem;">Discipline and Hard work yields success</p>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            // MOBILE MENU TOGGLE
+            const toggle = document.getElementById('menuToggle');
+            const nav = document.getElementById('navLinks');
+            
+            if (toggle && nav) {
+                toggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    nav.classList.toggle('mobile-open');
+                });
+                
+                document.addEventListener('click', function(e) {
+                    if (!nav.contains(e.target) && !toggle.contains(e.target)) {
+                        nav.classList.remove('mobile-open');
+                    }
+                });
+            }
+            
+            // ACTIVE NAV HIGHLIGHT (based on current page)
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            navLinks.forEach(link => {
+                const linkPage = link.getAttribute('href');
+                if (linkPage === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+
+            // Ensure portal/news mapping reflect new names — no further logic needed
+        })();
+    </script>
+</body>
+</html>

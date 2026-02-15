@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Gallery · Arakan Boys Secondary School</title>
+    <!-- Playfair Display — primary font throughout -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Inter only as geometric fallback/accents -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ---------- GLOBAL — PLAYFAIR DOMINANCE, MILITARY PRECISION ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :root {
+            --barracks-blue: #1a3e50;
+            --parade-grey: #4f5a62;
+            --stripe-gold: #b78c4a;
+            --rifle-green: #1e2f3a;
+            --bone-white: #b0b0b0;
+            --pure-white: #f8fbfc;
+            --border-light: rgba(26, 62, 80, 0.15);
+            --frame-border: #c0a15e;
+        }
+
+        body {
+            font-family: 'Playfair Display', serif;
+            background-color: var(--pure-white);
+            color: #1e2b36;
+            line-height: 1.5;
+            font-weight: 400;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ---------- HEADER — STICKY, CRISP, DUAL EMBLEM ---------- */
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(255,255,255,0.96);
+            backdrop-filter: blur(8px);
+            border-bottom: 3px solid var(--barracks-blue);
+            z-index: 100;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            width: 100%;
+        }
+
+        .logo-dual {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        .logo-shield-left,
+        .logo-shield-right {
+            width: 64px;
+            height: 64px;
+            border: 2px solid var(--barracks-blue);
+            background: #e8f0f3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .logo-shield-right {
+            border: 2px solid var(--stripe-gold);
+        }
+
+        .logo-shield-left img,
+        .logo-shield-right img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .school-name {
+            flex-grow: 1;
+        }
+
+        .school-name h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: var(--rifle-green);
+            line-height: 1.1;
+            letter-spacing: -0.5px;
+        }
+
+        .school-name span {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--parade-grey);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-top: 4px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--rifle-green);
+            padding-bottom: 6px;
+            border-bottom: 2px solid transparent;
+            transition: 0.2s;
+            font-size: 1.05rem;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            border-bottom-color: var(--stripe-gold);
+            color: var(--barracks-blue);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            color: var(--rifle-green);
+            cursor: pointer;
+        }
+
+        /* ---------- GALLERY PAGE - CLEAN PORTRAIT FRAMES ---------- */
+        .gallery-header {
+            padding: 40px 0 20px;
+            border-bottom: 2px solid var(--stripe-gold);
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+        }
+
+        .gallery-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 8vw, 3rem);
+            font-weight: 900;
+            color: var(--rifle-green);
+            letter-spacing: -1px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .gallery-header h2 i {
+            color: var(--barracks-blue);
+            font-size: clamp(2rem, 7vw, 2.8rem);
+        }
+
+        .photo-count {
+            background: var(--rifle-green);
+            color: white;
+            padding: 8px 24px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 2px;
+            border: 2px solid var(--stripe-gold);
+        }
+
+        /* Portrait gallery grid */
+        .portrait-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 32px;
+            margin-bottom: 60px;
+            justify-items: center;
+        }
+
+        .frame-item {
+            background: white;
+            border: 1px solid var(--border-light);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+            width: 100%;
+            max-width: 320px;
+            cursor: pointer;
+        }
+
+        .frame-item:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 32px rgba(26,62,80,0.12);
+            border-color: var(--stripe-gold);
+        }
+
+        /* Portrait frame styling */
+        .image-frame {
+            padding: 20px 20px 20px 20px;
+            background: #f5f1e8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .image-frame::before {
+            content: "";
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 1px solid rgba(183, 140, 74, 0.3);
+            border-radius: 8px;
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        .image-frame::after {
+            content: "⏋";
+            position: absolute;
+            bottom: 8px;
+            right: 15px;
+            color: var(--stripe-gold);
+            font-size: 1.2rem;
+            opacity: 0.5;
+            z-index: 3;
+        }
+
+        .image-frame img {
+            width: 100%;
+            aspect-ratio: 3/4;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 3px solid white;
+            box-shadow: inset 0 2px 6px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 2;
+            display: block;
+        }
+
+        /* No footer/badge - completely clean */
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15,31,40,0.95);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(8px);
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 4px solid var(--stripe-gold);
+        }
+
+        .lightbox-image {
+            max-width: 100%;
+            max-height: 80vh;
+            object-fit: contain;
+            display: block;
+        }
+
+        .lightbox-filename {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: var(--rifle-green);
+            color: white;
+            padding: 8px 24px;
+            border-radius: 60px;
+            font-family: 'Inter', monospace;
+            font-size: 0.9rem;
+            border: 2px solid var(--stripe-gold);
+            z-index: 2;
+        }
+
+        .lightbox-filename i {
+            margin-right: 8px;
+            color: var(--stripe-gold);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--stripe-gold);
+            color: #0e1c24;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            cursor: pointer;
+            border: 2px solid white;
+            z-index: 1001;
+        }
+
+        .lightbox-prev,
+        .lightbox-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--barracks-blue);
+            color: white;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            cursor: pointer;
+            border: 2px solid var(--stripe-gold);
+            transition: 0.2s;
+        }
+
+        .lightbox-prev { left: 20px; }
+        .lightbox-next { right: 20px; }
+
+        .lightbox-prev:hover,
+        .lightbox-next:hover {
+            background: var(--stripe-gold);
+            color: #0e1c24;
+        }
+
+        /* ---------- FOOTER ---------- */
+        footer {
+            background: #0f1f28;
+            color: #e0ecf2;
+            padding: 64px 0 32px;
+            border-top: 6px solid var(--barracks-blue);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1.5fr;
+            gap: 48px;
+            margin-bottom: 48px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .footer-school h3 {
+            font-family: 'Playfair Display', serif;
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .footer-school p {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .zambia-badge {
+            display: inline-block;
+            background: #198a5e;
+            color: white;
+            padding: 4px 16px;
+            border-radius: 40px;
+            font-family: 'Playfair Display', serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-left: 10px;
+            text-transform: uppercase;
+        }
+
+        .footer-contact {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .footer-contact h5 {
+            font-family: 'Playfair Display', serif;
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            border-bottom: 2px solid var(--stripe-gold);
+            display: inline-block;
+            padding-bottom: 8px;
+        }
+
+        .footer-contact ul {
+            list-style: none;
+        }
+
+        .footer-contact li {
+            margin-bottom: 18px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.05rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .footer-contact i {
+            width: 24px;
+            color: var(--stripe-gold);
+            font-size: 1.2rem;
+        }
+
+        .footer-contact a {
+            color: #cbdbe3;
+            text-decoration: none;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 32px;
+            border-top: 1px solid #2a4450;
+            font-family: 'Playfair Display', serif;
+            color: #a1b7c2;
+            font-size: 0.95rem;
+        }
+
+        /* ---------- RESPONSIVE ---------- */
+        @media (max-width: 992px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .nav-links {
+                display: none;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .nav-links.mobile-open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                padding: 30px;
+                box-shadow: 0 20px 20px rgba(0,0,0,0.05);
+                border-top: 1px solid var(--border-light);
+            }
+            .footer-grid {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 0 20px; }
+            .school-name h1 { font-size: 1.3rem; }
+            .logo-shield-left, .logo-shield-right { width: 52px; height: 52px; }
+            .portrait-gallery {
+                grid-template-columns: 1fr;
+                justify-items: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .logo-shield-left, .logo-shield-right { width: 44px; height: 44px; }
+            .gallery-header { flex-direction: column; align-items: flex-start; }
+            .photo-count { margin-top: 12px; }
+            .lightbox-prev, .lightbox-next { width: 40px; height: 40px; font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container navbar">
+            <div class="logo-area">
+                <div class="logo-dual">
+                    <div class="logo-shield-left">
+                        <img src="emblem-left.png" alt="Arakan left emblem" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-shield\' style=\'font-size:2.5rem;color:#1a3e50;\'></i>'">
+                    </div>
+                    <div class="logo-shield-right">
+                        <img src="emblem-right.png" alt="Arakan right emblem" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-shield-haltered\' style=\'font-size:2.5rem;color:#b78c4a;\'></i>'">
+                    </div>
+                </div>
+                <div class="school-name">
+                    <h1>ARAKAN BOYS</h1>
+                    <span>SECONDARY SCHOOL · LUSAKA</span>
+                </div>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="portal.html">Portal</a>
+                <a href="news.html">News</a>
+                <a href="contact.html">Contact</a>
+                <a href="gallary.html" class="active">Gallery</a>
+            </div>
+            <div class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- GALLERY HEADER -->
+        <div class="container gallery-header">
+            <h2>
+                <i class="fas fa-camera-retro"></i> GALLERY
+            </h2>
+            <span class="photo-count"><i class="fas fa-images"></i> PICTURES</span>
+        </div>
+
+        <!-- LIGHTBOX -->
+        <div class="lightbox" id="lightbox">
+            <div class="lightbox-close" id="lightboxClose"><i class="fas fa-times"></i></div>
+            <div class="lightbox-prev" id="lightboxPrev"><i class="fas fa-chevron-left"></i></div>
+            <div class="lightbox-next" id="lightboxNext"><i class="fas fa-chevron-right"></i></div>
+            <div class="lightbox-content">
+                <img src="" alt="" class="lightbox-image" id="lightboxImage">
+                <div class="lightbox-filename" id="lightboxFilename"></div>
+            </div>
+        </div>
+
+        <!-- PORTRAIT GALLERY - CLEAN FRAMES WITH ACTUAL IMAGES -->
+        <div class="container">
+            <div class="portrait-gallery" id="portraitGallery">
+                <!-- Images will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <!-- BACK TO HOME -->
+        <div class="container" style="margin-bottom: 48px; text-align: center;">
+            <a href="index.html" style="display: inline-block; background: var(--barracks-blue); color: white; padding: 12px 32px; border-radius: 60px; text-decoration: none; font-weight: 700; border: 2px solid var(--stripe-gold);"><i class="fas fa-arrow-left"></i> RETURN TO HOMEPAGE</a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-school">
+                <h3>Arakan Boys<br>Secondary School</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Arakan Barracks, Lusaka, Zambia <span class="zambia-badge">ZAMBIA</span></p>
+                <p style="margin-top: 20px;"><i class="fas fa-shield-alt"></i> Military school · Est. 2014</p>
+                <p style="margin-top: 24px; font-style: italic; color: #c2d4dc;">Discipline and Hard work yields success</p>
+            </div>
+            
+            <div class="footer-contact">
+                <h5><i class="fas fa-address-card"></i> Contact & Connect</h5>
+                <ul>
+                    <li><i class="fas fa-phone-alt"></i> +260760976399</li>
+                    <li><i class="fas fa-envelope"></i> arakanboys2025@gmail.com</li>
+                    <li><i class="fas fa-location-dot"></i> Arakan Barracks, Lusaka</li>
+                    <li><i class="fas fa-globe"></i> <a href="contact.html">Official contact page</a></li>
+                    <li><i class="fas fa-clock"></i> Mon–Fri: 07:30 – 16:00</li>
+                </ul>
+            </div>
+        </div>
+        <div class="container copyright">
+            <p>© 2026 Arakan Boys Secondary School. Computer Science Club Project</p>
+            <p style="margin-top: 8px; font-size: 0.9rem;">Discipline and Hard work yields success</p>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            // MOBILE MENU TOGGLE
+            const toggle = document.getElementById('menuToggle');
+            const nav = document.getElementById('navLinks');
+            
+            if (toggle && nav) {
+                toggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    nav.classList.toggle('mobile-open');
+                });
+                
+                document.addEventListener('click', function(e) {
+                    if (!nav.contains(e.target) && !toggle.contains(e.target)) {
+                        nav.classList.remove('mobile-open');
+                    }
+                });
+            }
+            
+            // ACTIVE NAV HIGHLIGHT
+            const currentPage = window.location.pathname.split('/').pop() || 'gallary.html';
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks.forEach(link => {
+                const linkPage = link.getAttribute('href');
+                if (linkPage === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+
+            // GALLERY DATA - Add unlimited images here in any order
+            // Images will display in the order written below
+            // Currently in descending order: 010526.png to 010126.png
+            const galleryImages = [
+                { filename: "010526.png" },
+                { filename: "010426.png" },
+                { filename: "010326.png" },
+                { filename: "010226.png" },
+                { filename: "010126.png" }
+                // Add more images below - just follow the format:
+                // { filename: "your-image-name.png" },
+            ];
+
+            // Get gallery container
+            const portraitGallery = document.getElementById('portraitGallery');
+
+            // Function to create portrait frame item with ACTUAL IMAGES
+            function createPortraitItem(image, index) {
+                return `
+                    <div class="frame-item" data-index="${index}">
+                        <div class="image-frame">
+                            <img src="${image.filename}" alt="Gallery image ${image.filename}">
+                        </div>
+                    </div>
+                `;
+            }
+
+            // Populate gallery
+            galleryImages.forEach((image, index) => {
+                portraitGallery.innerHTML += createPortraitItem(image, index);
+            });
+
+            // LIGHTBOX FUNCTIONALITY
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImage = document.getElementById('lightboxImage');
+            const lightboxFilename = document.getElementById('lightboxFilename');
+            const lightboxClose = document.getElementById('lightboxClose');
+            const lightboxPrev = document.getElementById('lightboxPrev');
+            const lightboxNext = document.getElementById('lightboxNext');
+            
+            let currentIndex = 0;
+
+            // Open lightbox when frame item is clicked
+            document.querySelectorAll('.frame-item').forEach((item, index) => {
+                item.addEventListener('click', () => {
+                    currentIndex = parseInt(item.dataset.index);
+                    updateLightbox(currentIndex);
+                    lightbox.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+
+            // Update lightbox content
+            function updateLightbox(index) {
+                const image = galleryImages[index];
+                lightboxImage.src = `${image.filename}`;
+                lightboxImage.alt = image.filename;
+                lightboxFilename.innerHTML = `<i class="far fa-file-image"></i> ${image.filename}`;
+            }
+
+            // Close lightbox
+            lightboxClose.addEventListener('click', () => {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+
+            // Navigate previous
+            lightboxPrev.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+                updateLightbox(currentIndex);
+            });
+
+            // Navigate next
+            lightboxNext.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % galleryImages.length;
+                updateLightbox(currentIndex);
+            });
+
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (!lightbox.classList.contains('active')) return;
+                
+                if (e.key === 'Escape') {
+                    lightbox.classList.remove('active');
+                    document.body.style.overflow = '';
+                } else if (e.key === 'ArrowLeft') {
+                    currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+                    updateLightbox(currentIndex);
+                } else if (e.key === 'ArrowRight') {
+                    currentIndex = (currentIndex + 1) % galleryImages.length;
+                    updateLightbox(currentIndex);
+                }
+            });
+
+            // Close lightbox when clicking outside
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) {
+                    lightbox.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        })();
+    </script>
+</body>
+</html>
